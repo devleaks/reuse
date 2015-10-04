@@ -12,10 +12,6 @@ return [
 			'class' => 'yii\image\ImageDriver',
 			'driver' => 'GD',  //GD or Imagick
         ],
-        'user' => [
-            'identityClass' => 'dektrium\user\models\User',
-            'loginUrl' => ['/user/security/login'],
-        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -35,12 +31,5 @@ return [
 	            'forceTranslation' => true
         	],
 		],
-        'user' => [
-            'class' => 'dektrium\user\Module',
-            //'allowUnconfirmedLogin' => true,
-            'confirmWithin' => 21600,
-            'cost' => 12,
-            'admins' => ['admin','pierre'],
-        ],
 	],
 ];

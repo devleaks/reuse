@@ -32,6 +32,10 @@ return [
                 'path' => '/free',
             ],
 		],
+        'user' => [
+            'identityClass' => 'dektrium\user\models\User',
+            'loginUrl' => ['/user/security/login'],
+        ],
     ],
     'params' => $params,
 ];

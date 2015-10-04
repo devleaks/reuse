@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3fb7d7a8cf8fd955eac7d88d70fad8d3",
-    "content-hash": "e3fbcec58c9ffc184d2677085b84f254",
+    "hash": "22293eb4d53cd4c728078cb39bc8437d",
+    "content-hash": "c3584f1e953b96a584a6cf51164a8704",
     "packages": [
         {
             "name": "2amigos/yii2-gallery-widget",
@@ -444,6 +444,45 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "c006/yii2-migration-utility",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/c006/yii2-migration-utility.git",
+                "reference": "a65a341c3456f30c5bad7f4a027a132d7d8a7d54"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/c006/yii2-migration-utility/zipball/a65a341c3456f30c5bad7f4a027a132d7d8a7d54",
+                "reference": "a65a341c3456f30c5bad7f4a027a132d7d8a7d54",
+                "shasum": ""
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "c006\\utility\\migration\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jon Chambers",
+                    "email": "jchambers.dev@gmail.com"
+                }
+            ],
+            "description": "Automatically writes the create tables for migrations or create tables in general",
+            "keywords": [
+                "extension",
+                "migration",
+                "tables",
+                "yii2"
+            ],
+            "time": "2015-08-08 18:07:48"
         },
         {
             "name": "cebe/markdown",
@@ -3534,7 +3573,8 @@
         "michelf/php-smartypants": 20,
         "kartik-v/yii2-markdown": 20,
         "yurkinx/yii2-image": 20,
-        "warrence/yii2-kartikgii": 20
+        "warrence/yii2-kartikgii": 20,
+        "c006/yii2-migration-utility": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

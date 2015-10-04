@@ -30,7 +30,8 @@
         "yurkinx/yii2-image": "dev-master",
         "dmstr/yii2-adminlte-asset": "2.*",
         "vova07/yii2-imperavi-widget": "*",
-        "warrence/yii2-kartikgii": "dev-master"
+        "warrence/yii2-kartikgii": "dev-master",
+        "c006/yii2-migration-utility": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

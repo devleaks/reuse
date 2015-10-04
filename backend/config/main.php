@@ -33,8 +33,22 @@ return [
                 'path' => '/usagain',
             ],
 		],
+        'user' => [
+            'identityClass' => 'dektrium\user\models\User',
+            'loginUrl' => ['/user/security/login'],
+        ],
     ],
     'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            //'allowUnconfirmedLogin' => true,
+            'confirmWithin' => 21600,
+            'cost' => 12,
+            'admins' => ['admin','pierre'],
+        ],
+		'utility' => [
+			'class' => 'c006\utility\migration\Module',
+		],
 		/** Reuse Application */
         'admin' => [
             'class' => 'backend\modules\admin\Module',
