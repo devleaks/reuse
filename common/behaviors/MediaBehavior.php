@@ -10,7 +10,7 @@ use yii\web\UploadedFile;
 class MediaBehavior extends Behavior {
     public $mediasAttributes;
  
-    public $fileModelClass = 'common\models\Media';
+    public $fileModelClass = 'common\models\Picture';
  
     public function events() {
         return [

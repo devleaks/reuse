@@ -2,9 +2,10 @@
 
 namespace common\models;
 
+use common\behaviors\MediaBehavior;
+
 use Yii;
 use yii\db\ActiveRecord;
-use common\behaviors\MediaBehavior;
 
 /**
  * This is the model class for table "ad".
@@ -38,8 +39,7 @@ class Ad extends _Ad
                 ],
 				'uploadFile' => [
 	                'class' => MediaBehavior::className(),
-	                'mediasAttributes' => ['media'],
-					'fileModelClass' => Media::className()
+	                'mediasAttributes' => ['picture'],
 	            ]
         ];
     }

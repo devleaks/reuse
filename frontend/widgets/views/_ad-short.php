@@ -14,4 +14,6 @@ $words = 30;
 
     <?= $model->truncate_to_n_words(Url::to(['/ad/view', 'id'=>$model->id]), $words) ?>
 
+	<?= $this->render('_gallery', ['model' => $model])?>
+
 </div>

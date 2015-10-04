@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace backend\modules\news\controllers;
 
 use Yii;
 use common\models\Message;

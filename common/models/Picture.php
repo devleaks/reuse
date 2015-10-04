@@ -11,7 +11,7 @@ use yii\web\UploadedFile;
 /**
  * This is the model class for table "media".
  */
-class Media extends _Picture
+class Picture extends _Picture
 {
     /**
      * Maximum size of images associated with ads
@@ -29,7 +29,7 @@ class Media extends _Picture
      * Maximum size of thumbnail images associated with ads
      * @var integer
      */
-    const MEDIA_ROOT_URL = '/reuse-images';
+    const MEDIA_ROOT_URL = '/ad-pictures';
 
     /**
      * @inheritdoc
@@ -42,8 +42,27 @@ class Media extends _Picture
                                 ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
                                 ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at',
                         ],
-                        'value' => function() { return date('Y-m-d H:i:s');},
+                        'value' => function() { return date('Y-m-d H:i:s'); /* mysql datetime format is ‘AAAA-MM-JJ HH:MM:SS’*/},
                 ],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels() {
+        return [
+            'id' => Yii::t('golf', 'Picture'),
+            'name' => Yii::t('golf', 'Name'),
+            'size' => Yii::t('golf', 'Size'),
+            'type' => Yii::t('golf', 'Type'),
+            'related_id' => Yii::t('golf', 'Related ID'),
+            'related_class' => Yii::t('golf', 'Related Class'),
+            'related_attribute' => Yii::t('golf', 'Related Attribute'),
+            'name_hash' => Yii::t('golf', 'Name Hash'),
+            'status' => Yii::t('golf', 'Status'),
+            'created_at' => Yii::t('golf', 'Created At'),
+            'updated_at' => Yii::t('golf', 'Updated At'),
         ];
     }
 
@@ -126,7 +145,7 @@ class Media extends _Picture
 		$imagePath = $this->getFilepath();
 		$pic = Yii::$app->image->load($imagePath);
 		$thumbPath = $this->getThumbnailPath();
-		//Yii::trace('Image:'.$pic->width.' X '.$pic->height.'.', 'Media::generateThumbnail');
+		//Yii::trace('Image:'.$pic->width.' X '.$pic->height.'.', 'Picture::generateThumbnail');
 		if($pic->width > self::THUMBNAIL_SIZE || $pic->height > self::THUMBNAIL_SIZE) {
 			$ratio = ($pic->width > $pic->height) ? $pic->width / self::THUMBNAIL_SIZE : $pic->height / self::THUMBNAIL_SIZE;
 			$newidth  = round($pic->width  / $ratio);
@@ -144,7 +163,7 @@ class Media extends _Picture
 	}
 
     /**
-     * Creates a [[\app\models\Media]] based on the [[yii\web\UploadedFile]]
+     * Creates a [[\app\models\File]] based on the [[yii\web\UploadedFile]]
      * @param UploadedFile $uploadedFile
      * @param $relatedModel
      * @param $relatedAttribute

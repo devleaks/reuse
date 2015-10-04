@@ -39,16 +39,16 @@ $role = MenuHelper::getRole();
 
             $menus = array();
 
-            $menus[] = ['label' => Yii::t('golf', 'Home'), 'url' => ['/site/index']];
+            $menus[] = ['label' => Yii::t('app', 'Home'), 'url' => ['/site/index']];
 
             // admin stuff
             if(in_array($role, ['admin', 'super'])) {
-                $menus[] = ['label' => Yii::t('golf', 'Site Admin'), 'url' => ['/admin']];
+                $menus[] = ['label' => Yii::t('app', 'Site Admin'), 'url' => ['/admin']];
             }
 
             // golf league stuff
             if($role) {
-                $menus[] = ['label' => Yii::t('golf', 'Golf League'), 'items' => MenuHelper::getMenu($role)];
+                $menus[] = ['label' => Yii::t('app', 'Golf League'), 'items' => MenuHelper::getMenu($role)];
             }
 
             if(!Yii::$app->user->isGuest) {
@@ -57,13 +57,13 @@ $role = MenuHelper::getRole();
                     $who .= ($role ? '/'.$role : '/?');
 
 				if(YII_ENV == 'dev')
-					$menus[] = ['label' => Yii::t('golf', 'Development'), 'items' => MenuHelper::getDeveloperMenu($role)];
+					$menus[] = ['label' => Yii::t('app', 'Development'), 'items' => MenuHelper::getDeveloperMenu($role)];
 
-				$menus[] = ['label' => Yii::t('golf', 'Help'), 'url' => ['/site/help']];
+				$menus[] = ['label' => Yii::t('app', 'Help'), 'url' => ['/site/help']];
 
 				$user_menu = [];
-				$user_menu[] = ['label' => Yii::t('golf', 'Profile'), 'url' => ['/user/settings']];
-				$user_menu[] = ['label' => Yii::t('golf', 'Logout'), 'url' => ['/user/security/logout'], 'linkOptions' => ['data-method' => 'post']];
+				$user_menu[] = ['label' => Yii::t('app', 'Profile'), 'url' => ['/user/settings']];
+				$user_menu[] = ['label' => Yii::t('app', 'Logout'), 'url' => ['/user/security/logout'], 'linkOptions' => ['data-method' => 'post']];
 
             	$menus[] = ['label' => $who, 'items' => $user_menu];
             } else

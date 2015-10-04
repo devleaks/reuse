@@ -9,7 +9,7 @@ use dosamigos\gallery\Gallery;
 <div class="media-gallery">
 <?php
     $pics = array();
-    foreach($model->media as $picture) {
+    foreach($model->picture as $picture) {
         $pics[] = [
             'url' => $picture->getFileUrl(),
             'src' => $picture->getThumbnailUrl(),

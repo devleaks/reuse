@@ -1,7 +1,8 @@
 <?php
 
+use kartik\detail\DetailView;
+
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Ad */
@@ -12,24 +13,15 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ad-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
     <?= DetailView::widget([
         'model' => $model,
+		'panel'=>[
+	        'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-shopping-cart"></i>  '.Html::encode($this->title).' </h3>',
+	    ],
+		'labelColOptions' => ['style' => 'width: 30%'],
         'attributes' => [
             'topcat',
-            'category.name',
+            'category_id',
             'status',
             'expire_at',
             'created_at',
@@ -39,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
-	<?=	$this->render('_gallery', [
+	<?=	$this->render('../media/_add', [
 		'model' => $model,
 	])?>
 

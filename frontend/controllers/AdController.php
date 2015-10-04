@@ -62,12 +62,16 @@ class AdController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+	public function actionView($id) {
+        $model=$this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id'=>$model->id]);
+        } else {
+            return $this->render('view', ['model'=>$model]);
+        }
     }
+
 
     /**
      * Creates a new Ad model.
@@ -80,30 +84,12 @@ class AdController extends Controller
 
 		$model->status = Ad::STATUS_PENDING;
 		$model->user_id = Yii::$app->user->identity->id;
+		$model->donnerie_id = Yii::$app->user->identity->donnerie_id;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save(true, ['id','category_id','topcat','subject','description','price','period','status','user_id','expire_at','created_at','updated_at'])) {
+        if ($model->load(Yii::$app->request->post()) && $model->save(true, ['id','category_id','topcat','subject','description','price','period','status','user_id','expire_at','donnerie_id','created_at','updated_at'])) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Updates an existing Ad model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
                 'model' => $model,
             ]);
         }

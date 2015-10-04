@@ -25,6 +25,13 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+		'session' => [
+            'name' => 'free_session',
+            'cookieParams' => [
+                'httpOnly' => true,
+                'path' => '/free',
+            ],
+		],
     ],
     'params' => $params,
 ];

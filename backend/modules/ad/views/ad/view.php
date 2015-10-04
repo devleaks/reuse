@@ -18,8 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	        'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-shopping-cart"></i>  '.Html::encode($this->title).' </h3>',
 	    ],
 		'labelColOptions' => ['style' => 'width: 30%'],
-        	'attributes' => [
-            'id',
+       	'attributes' => [
             'category_id',
             'topcat',
             'subject',
@@ -33,5 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at',
         ],
     ]) ?>
+
+	<?=	$this->render('../media/_add', [
+		'model' => $model,
+	])?>
+
 
 </div>

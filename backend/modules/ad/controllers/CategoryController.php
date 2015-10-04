@@ -1,18 +1,18 @@
 <?php
 
-namespace backend\controllers;
+namespace backend\modules\ad\controllers;
 
 use Yii;
-use common\models\Menu;
-use common\models\MenuSearch;
+use common\models\Category;
+use common\models\CategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * MenuController implements the CRUD actions for Menu model.
+ * CategoryController implements the CRUD actions for Category model.
  */
-class MenuController extends Controller
+class CategoryController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class MenuController extends Controller
     }
 
     /**
-     * Lists all Menu models.
+     * Lists all Category models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new MenuSearch();
+        $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class MenuController extends Controller
     }
 
     /**
-     * Displays a single Menu model.
+     * Displays a single Category model.
      * @param integer $id
      * @return mixed
      */
@@ -54,13 +54,13 @@ class MenuController extends Controller
     }
 
     /**
-     * Creates a new Menu model.
+     * Creates a new Category model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Menu();
+        $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,7 +72,7 @@ class MenuController extends Controller
     }
 
     /**
-     * Updates an existing Menu model.
+     * Updates an existing Category model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -91,7 +91,7 @@ class MenuController extends Controller
     }
 
     /**
-     * Deletes an existing Menu model.
+     * Deletes an existing Category model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -104,15 +104,15 @@ class MenuController extends Controller
     }
 
     /**
-     * Finds the Menu model based on its primary key value.
+     * Finds the Category model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Menu the loaded model
+     * @return Category the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Menu::findOne($id)) !== null) {
+        if (($model = Category::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

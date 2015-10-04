@@ -51,7 +51,7 @@ if(! $model->expire_at)
         ]) ?>
 
 	<?php if (true /*!$model->isNewRecord*/)
-				echo $this->render('_add', [
+				echo $this->render('../media/_add', [
 		'model' => $model,
 		'form' => $form,
 	])?>

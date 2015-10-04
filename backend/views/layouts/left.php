@@ -43,7 +43,7 @@ $role = Menu::getRole();
                         'url' => '#',
                         'items' => [
                             ['label' => Yii::t('app', 'Ads'), 'icon' => 'fa fa-automobile', 'url' => ['/ad/ad'],],
-                        	['label' => Yii::t('app', 'Categories'), 'icon' => 'fa fa-tags', 'url' => ['/ad/categorie'],],
+                        	['label' => Yii::t('app', 'Categories'), 'icon' => 'fa fa-tags', 'url' => ['/ad/category'],],
 						],
 					],
                     [
@@ -52,7 +52,7 @@ $role = Menu::getRole();
                         'url' => '#',
                         'items' => [
                             ['label' => Yii::t('app', 'Newsletters'), 'icon' => 'fa fa-newspaper-o', 'url' => ['/news/newsletter'],],
-                        	['label' => Yii::t('app', 'Messages'), 'icon' => 'fa fa-list-alt', 'url' => ['/news/messages'],],
+                        	['label' => Yii::t('app', 'Messages'), 'icon' => 'fa fa-list-alt', 'url' => ['/news/message'],],
 						],
 					],
                     [
