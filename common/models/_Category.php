@@ -15,6 +15,7 @@ use Yii;
  * @property string $updated_at
  *
  * @property Ad[] $ads
+ * @property Ad[] $ads0
  * @property DonnerieCategory[] $donnerieCategories
  */
 class _Category extends \yii\db\ActiveRecord
@@ -60,6 +61,14 @@ class _Category extends \yii\db\ActiveRecord
      * @return \yii\db\ActiveQuery
      */
     public function getAds()
+    {
+        return $this->hasMany(Ad::className(), ['category_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAds0()
     {
         return $this->hasMany(Ad::className(), ['category_id' => 'id']);
     }

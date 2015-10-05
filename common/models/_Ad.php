@@ -21,9 +21,11 @@ use Yii;
  * @property string $updated_at
  * @property integer $donnerie_id
  *
- * @property Donnerie $donnerie
- * @property Category $category
  * @property User $user
+ * @property Category $category
+ * @property User $user0
+ * @property Donnerie $donnerie
+ * @property Category $category0
  * @property Interest[] $interests
  * @property UserAd[] $userAds
  */
@@ -78,9 +80,9 @@ class _Ad extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDonnerie()
+    public function getUser()
     {
-        return $this->hasOne(Donnerie::className(), ['id' => 'donnerie_id']);
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
     /**
@@ -94,9 +96,25 @@ class _Ad extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
+    public function getUser0()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDonnerie()
+    {
+        return $this->hasOne(Donnerie::className(), ['id' => 'donnerie_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory0()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
 
     /**

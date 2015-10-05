@@ -1,19 +1,15 @@
 <?php
-namespace common\models;
 
-use common\behaviors\MediaBehavior;
+namespace common\models;
 
 use Yii;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "category".
+ * This is the model class for table "donnerie".
  */
-class Category extends _Category
+class Donnerie extends _Donnerie
 {
-	const STATUS_ACTIVE = 'ACTIVE';
-	const STATUS_RETIRED = 'RETIRED';
-
     /**
      * @inheritdoc
      */
@@ -28,10 +24,6 @@ class Category extends _Category
                         ],
                         'value' => function() { return date('Y-m-d H:i:s'); },
                 ],
-				'uploadFile' => [
-	                'class' => MediaBehavior::className(),
-	                'mediasAttributes' => ['picture'],
-	            ]
         ];
     }
 

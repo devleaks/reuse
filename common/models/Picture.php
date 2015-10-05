@@ -31,6 +31,11 @@ class Picture extends _Picture
      */
     const MEDIA_ROOT_URL = '/ad-pictures';
 
+	const MEDIA_ROOT_PATH = '@common/uploads';
+
+
+	const ACCEPT_FORMATS = 'image/jpeg, image/png, image/gif';
+
     /**
      * @inheritdoc
      */
@@ -75,7 +80,7 @@ class Picture extends _Picture
     }
 
     protected function getDirPath() {
-        return \Yii::getAlias('@common/uploads');
+        return \Yii::getAlias(self::MEDIA_ROOT_PATH);
     }
 
     public function getFilePath() {

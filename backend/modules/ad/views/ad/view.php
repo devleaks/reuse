@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	    ],
 		'labelColOptions' => ['style' => 'width: 30%'],
        	'attributes' => [
+			'donnerie_id',
             'category_id',
             'topcat',
             'subject',

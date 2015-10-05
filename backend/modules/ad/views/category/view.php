@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use kartik\detail\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Category */
@@ -12,21 +12,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
     <?= DetailView::widget([
         'model' => $model,
+		'panel'=>[
+	        'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-tags"></i>  '.Html::encode($this->title).' </h3>',
+	    ],
+		'labelColOptions' => ['style' => 'width: 30%'],
         'attributes' => [
             'id',
             'name',
@@ -36,5 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at',
         ],
     ]) ?>
+
+	<?=	$this->render('../media/_add', [
+		'model' => $model,
+	])?>
 
 </div>

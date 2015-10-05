@@ -16,9 +16,11 @@ use Yii;
  * @property integer $updated_at
  * @property integer $donnerie_id
  *
- * @property Donnerie $donnerie
  * @property _Menu $parent
  * @property _Menu[] $menus
+ * @property _Menu $parent0
+ * @property _Menu[] $menus0
+ * @property Donnerie $donnerie
  */
 class _Menu extends \yii\db\ActiveRecord
 {
@@ -63,14 +65,6 @@ class _Menu extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDonnerie()
-    {
-        return $this->hasOne(Donnerie::className(), ['id' => 'donnerie_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getParent()
     {
         return $this->hasOne(_Menu::className(), ['id' => 'parent_id']);
@@ -82,5 +76,29 @@ class _Menu extends \yii\db\ActiveRecord
     public function getMenus()
     {
         return $this->hasMany(_Menu::className(), ['parent_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getParent0()
+    {
+        return $this->hasOne(_Menu::className(), ['id' => 'parent_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMenus0()
+    {
+        return $this->hasMany(_Menu::className(), ['parent_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDonnerie()
+    {
+        return $this->hasOne(Donnerie::className(), ['id' => 'donnerie_id']);
     }
 }

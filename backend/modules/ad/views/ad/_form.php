@@ -1,4 +1,6 @@
 <?php
+use common\models\Donnerie;
+use common\models\Category;
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -12,7 +14,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    <?= $form->field($model, 'donnerie_id')->dropDownList(ArrayHelper::map(Donnerie::find()->orderBy('name')->asArray()->all(), 'id', 'name')) ?>
+
+    <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->orderBy('name')->asArray()->all(), 'id', 'name')) ?>
 
     <?= $form->field($model, 'topcat')->textInput(['maxlength' => 20]) ?>
 

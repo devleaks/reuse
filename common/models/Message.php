@@ -14,6 +14,9 @@ class Message extends _Message
 	const TYPE_BLOG = 'POST';
 	const TYPE_PAGE = 'PAGE';
 	
+	const STATUS_ACTIVE = 'ACTIVE';
+	const STATUS_RETIRED = 'RETIRED';
+
     /**
      * @inheritdoc
      */

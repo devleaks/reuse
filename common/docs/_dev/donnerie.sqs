@@ -1109,6 +1109,7 @@ LWE0hoaG
 ]]></encodedPrintInfo>
         <autoSizeTablesOption><![CDATA[0]]></autoSizeTablesOption>
         <documentScaleFactor><![CDATA[0.75]]></documentScaleFactor>
+        <dropTableOption><![CDATA[0]]></dropTableOption>
         <exportDialect><![CDATA[mysql]]></exportDialect>
         <fileversion><![CDATA[3.1]]></fileversion>
         <generator><![CDATA[com.malcolmhardie.sqleditor]]></generator>
@@ -1121,9 +1122,9 @@ LWE0hoaG
         <snapToGrid><![CDATA[1]]></snapToGrid>
         <SourceSidebarWidth><![CDATA[276.000000]]></SourceSidebarWidth>
         <uid><![CDATA[9E773444-7C41-4E19-9803-7AEE7F26C2F3]]></uid>
-        <windowHeight><![CDATA[1111.000000]]></windowHeight>
-        <windowLocationX><![CDATA[613.000000]]></windowLocationX>
-        <windowLocationY><![CDATA[302.000000]]></windowLocationY>
+        <windowHeight><![CDATA[971.000000]]></windowHeight>
+        <windowLocationX><![CDATA[10.000000]]></windowLocationX>
+        <windowLocationY><![CDATA[56.000000]]></windowLocationY>
         <windowScrollOrigin><![CDATA[{0, 0}]]></windowScrollOrigin>
         <windowWidth><![CDATA[1670.000000]]></windowWidth>
     </SQLDocumentInfo>

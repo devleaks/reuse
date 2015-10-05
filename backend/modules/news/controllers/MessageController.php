@@ -3,6 +3,7 @@
 namespace backend\modules\news\controllers;
 
 use Yii;
+use common\models\Picture;
 use common\models\Message;
 use common\models\MessageSearch;
 use yii\web\Controller;
@@ -25,6 +26,23 @@ class MessageController extends Controller
             ],
         ];
     }
+
+	public function actions()
+	{
+	    return [
+	        'images-get' => [
+	            'class' => 'vova07\imperavi\actions\GetAction',
+	            'url' => Picture::MEDIA_ROOT_URL.'/news', // Directory URL address, where files are stored.
+	            'path' => Picture::MEDIA_ROOT_PATH.'/news', // Or absolute path to directory where files are stored.
+	            'type' => Picture::ACCEPT_FORMATS,
+	        ],
+	        'image-upload' => [
+	            'class' => 'vova07\imperavi\actions\UploadAction',
+	            'url' => Picture::MEDIA_ROOT_URL.'/news', // Directory URL address, where files are stored.
+	            'path' => Picture::MEDIA_ROOT_PATH.'/news' // Or absolute path to directory where files are stored.
+	        ],
+	    ];
+	}
 
     /**
      * Lists all Message models.

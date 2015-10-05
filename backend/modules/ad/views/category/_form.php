@@ -1,5 +1,7 @@
 <?php
 
+use kartik\switchinput\SwitchInput;
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -16,11 +18,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'position')->textInput() ?>
 
-    <?= $form->field($model, 'status')->textInput(['maxlength' => 20]) ?>
+    <?= $form->field($model, 'status')->widget(SwitchInput::classname(), ['pluginOptions' => [
+				'onText' => Yii::t('app', $model::STATUS_ACTIVE),
+				'offText' =>  Yii::t('app', $model::STATUS_RETIRED),
+		        'onColor' => 'success',
+		        'offColor' => 'danger',
+				'state' => $model->status == $model::STATUS_ACTIVE
+	]]) ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

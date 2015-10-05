@@ -1,5 +1,7 @@
 <?php
 
+use common\models\Picture;
+
 use kartik\widgets\ActiveForm;
 use kartik\widgets\FileInput;
 use kartik\helpers\Html;
@@ -31,7 +33,7 @@ else
 	<?= Html::panel([
 		'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-picture"></i> '.Yii::t('app', 'Pictures').' </h3>',
 		'body' => $form->field($model, 'picture[]')->widget(FileInput::classname(), [
-			'options' => ['accept' => 'image/jpeg, image/png, image/gif', 'multiple' => true],
+			'options' => ['accept' => Picture::ACCEPT_FORMATS, 'multiple' => true],
 			'pluginOptions' => [
 				'initialPreview'    => $items,
 				'initialCaption'    => Yii::t('app', 'Select pictures with Browse... then press Upload.'),
