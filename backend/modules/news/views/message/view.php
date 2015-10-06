@@ -3,8 +3,11 @@ use common\models\Message;
 
 use kartik\detail\DetailView;
 
+use vova07\imperavi\Widget as RedactorWidget;
+
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Message */
@@ -31,7 +34,22 @@ $this->params['breadcrumbs'][] = $this->title;
 				],
             ],
             'subject',
-            'text:ntext',
+ 			[
+                'attribute'=>'text',
+				'type' => DetailView::INPUT_WIDGET,
+				'widgetOptions' => [
+					'class' => RedactorWidget::className(),
+				    'settings' => [
+				        'lang' => 'fr',
+				        'minHeight' => 300,
+				        'plugins' => [
+				            'clips',
+				        ],
+				    	'imageUpload' => Url::to(['image-upload']),
+						'imageManagerJson' => Url::to(['images-get']),
+					],
+				],
+			],
             'language',
             'position',
             [
@@ -61,5 +79,9 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
         ],
     ]) ?>
+
+	<?=	$this->render('../media/_add', [
+		'model' => $model,
+	])?>
 
 </div>

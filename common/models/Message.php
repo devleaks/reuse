@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use common\behaviors\MediaBehavior;
+
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -31,6 +33,10 @@ class Message extends _Message
                         ],
                         'value' => function() { return date('Y-m-d H:i:s'); },
                 ],
+				'uploadFile' => [
+	                'class' => MediaBehavior::className(),
+	                'mediasAttributes' => ['picture'],
+	            ]
         ];
     }
 

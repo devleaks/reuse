@@ -12,6 +12,7 @@ use frontend\widgets\Alert;
 
 AppAsset::register($this);
 $apphomedir = Yii::getAlias('@app');
+$languages = isset(Yii::$app->params['languages']) ? array_keys(Yii::$app->params['languages']) : [substr(Yii::$app->language, 0, 2)];
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -44,6 +45,12 @@ $apphomedir = Yii::getAlias('@app');
                 ['label' => 'Sub', 'items' => $sub],
             ];
 */
+			$menuLanguages = [];
+			foreach($languages as $lang)
+				if(substr(Yii::$app->language, 0, 2) != $lang)
+					$menuLanguages[] = ['label' => $lang, 'url' => ['site/lang', 'lang'=>$lang]];
+			$menuItems[] = ['label' => substr(Yii::$app->language, 0, 2), 'items' => $menuLanguages];
+
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Signup', 'url' => ['/user/register']];
                 $menuItems[] = ['label' => 'Login', 'url' => ['/user/login']];

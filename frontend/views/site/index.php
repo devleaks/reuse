@@ -21,7 +21,7 @@ $this->title = Yii::$app->name;
 
             <div class="col-lg-4">
 				<div class="row">
-    				<h3><?= Html::encode('Search') ?></h3>
+    				<h3><?= Html::encode(Yii::t('app','Search')) ?></h3>
 
 					<?= $this->render('_search', ['model' => $search]) ?>
 				</div>

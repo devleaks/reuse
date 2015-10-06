@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use common\components\LanguageSelector;
+
 use Yii;
 use common\models\Ad;
 use common\models\AdSearch;
@@ -12,6 +14,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use \yii\web\Cookie;
 
 /**
  * Site controller
@@ -98,6 +101,17 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionLang($lang)
+    {
+		$cookie = new Cookie([
+		    'name' => LanguageSelector::LANG_COOKIE,
+		    'value' => $lang,
+		    'expire' => time() + 86400 * 365,
+		]);
+		\Yii::$app->getResponse()->getCookies()->add($cookie);
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
 }

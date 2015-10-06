@@ -1,6 +1,12 @@
 <?php
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+	'bootstrap' => [
+		'languageSelector' => [
+			'class' => common\components\LanguageSelector::className(),
+			'supportedLanguages' => ['en', 'fr', 'nl'],
+		],
+	],
     'components' => [
         'assetManager' => [
             'linkAssets' => true,

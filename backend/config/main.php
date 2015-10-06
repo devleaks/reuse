@@ -14,10 +14,6 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => [
 		'log',
-		'languageSelector' => [
-			'class' => common\components\LanguageSelector::className(),
-			'supportedLanguages' => ['en', 'fr', 'nl'],
-		],
 	],
     'modules' => [],
     'components' => [
