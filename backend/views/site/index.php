@@ -10,16 +10,16 @@ $this->title = Yii::$app->name;
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Welcome!</h1>
+        <h1><?= Yii::t('app', 'Welcome!') ?></h1>
 
-        <p><a class="btn btn-lg btn-success" href="/free">Go To Public Site</a></p>
+        <p><a class="btn btn-lg btn-success" href="/free"><?= Yii::t('app', 'Go To Public Site') ?></a></p>
     </div>
 
     <div class="body-content">
 
         <div class="row">
             <div class="col-lg-4">
-                <h2>Ads</h2>
+                <h2><?= Yii::t('app', 'Ads') ?></h2>
 
                 <ul>
                     <li><a href="<?= Url::to(['/ad']) ?>">Ads</a></li>
@@ -28,14 +28,14 @@ $this->title = Yii::$app->name;
 
              </div>
             <div class="col-lg-4">
-                <h2>Messages</h2>
+                <h2><?= Yii::t('app', 'Messages') ?></h2>
 
                 <ul>
                     <li><a href="<?= Url::to(['/message']) ?>">Messages</a></li>
 				</ul>
             </div>
             <div class="col-lg-4">
-                <h2>Users</h2>
+                <h2><?= Yii::t('app', 'Users') ?></h2>
 
                 <ul>
                     <li><a href="<?= Url::to(['/user/admin']) ?>">Users</a></li>

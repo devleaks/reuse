@@ -2,8 +2,13 @@
 use common\models\Profile;
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $profile = Profile::findOne(['user_id' => Yii::$app->user->identity->id]);
+
+//$languages = Yii::$app->bootstrap['languageSelector']->supportedLanguages;
+$languages = isset(Yii::$app->params['languages']) ? array_keys(Yii::$app->params['languages']) : [substr(Yii::$app->language, 0, 2)];
+
 /* @var $this \yii\web\View */
 /* @var $content string */
 ?>
@@ -21,6 +26,17 @@ $profile = Profile::findOne(['user_id' => Yii::$app->user->identity->id]);
         <div class="navbar-custom-menu">
 
             <ul class="nav navbar-nav">
+	
+				<li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= substr(Yii::$app->language, 0, 2) ?> <span class="caret"></span></a>
+                 	<ul class="dropdown-menu" role="menu">
+					<?php
+						foreach($languages as $lang)
+							if(substr(Yii::$app->language, 0, 2) != $lang)
+								echo '<li><a href="'.Url::to(['site/lang', 'lang'=>$lang]).'">'.$lang.'</a></li>';
+					?>
+               		</ul>
+               </li>
 
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">

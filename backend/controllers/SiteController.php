@@ -1,17 +1,21 @@
 <?php
 namespace backend\controllers;
 
+use common\models\LoginForm;
+use common\components\LanguageSelector;
+
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use common\models\LoginForm;
 use yii\filters\VerbFilter;
+use \yii\web\Cookie;
 
 /**
  * Site controller
  */
 class SiteController extends Controller
 {
+	
     /**
      * @inheritdoc
      */
@@ -22,11 +26,11 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error', 'lang'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'lang'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -56,6 +60,17 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionLang($lang)
+    {
+		$cookie = new Cookie([
+		    'name' => LanguageSelector::LANG_COOKIE,
+		    'value' => $lang,
+		    'expire' => time() + 86400 * 365,
+		]);
+		\Yii::$app->getResponse()->getCookies()->add($cookie);
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
 }

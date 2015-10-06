@@ -8,10 +8,17 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
+//	'language' => 'fr',
 	'name' => 'ReUse Administration',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+		'log',
+		'languageSelector' => [
+			'class' => common\components\LanguageSelector::className(),
+			'supportedLanguages' => ['en', 'fr', 'nl'],
+		],
+	],
     'modules' => [],
     'components' => [
         'log' => [

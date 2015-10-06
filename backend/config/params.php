@@ -2,9 +2,14 @@
 return [
     'adminEmail' => 'admin@example.com',
 	'valid_roles' => [
-		'admin' => 'Site Administrator',
-		'manager' => 'Donnerie Organiser',
-		'writer' => 'Writer',
-		'visitor' => 'Visitor',
+		'admin' =>		Yii::t('app', 'Site Administrator'),
+		'manager' =>	Yii::t('app', 'Donnerie Manager'),
+		'writer' =>		Yii::t('app', 'Writer'),
+		'visitor' =>	Yii::t('app', 'Visitor'),
+	],
+	'languages' => [
+		'fr' => 'Français',
+		'nl' => 'Nederlands',
+		'en' => 'English',
 	],
 ];
