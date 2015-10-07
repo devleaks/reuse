@@ -5,7 +5,7 @@ use common\components\LanguageSelector;
 
 use Yii;
 use common\models\Ad;
-use common\models\AdSearch;
+use frontend\models\AdFrontpageSearch;
 use common\models\Message;
 use common\models\MessageSearch;
 use frontend\models\ContactForm;
@@ -70,8 +70,8 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new AdSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $searchModel = new AdFrontpageSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->post());
 
         return $this->render('index', [
 			'messages' => Message::find()->orderBy('updated_at desc')->limit(3), // need to display sticky first

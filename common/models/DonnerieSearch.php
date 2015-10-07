@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Ad;
+use common\models\Donnerie;
 
 /**
- * AdSearch represents the model behind the search form about `common\models\Ad`.
+ * DonnerieSearch represents the model behind the search form about `common\models\Donnerie`.
  */
-class AdSearch extends Ad
+class DonnerieSearch extends Donnerie
 {
     /**
      * @inheritdoc
@@ -18,9 +18,8 @@ class AdSearch extends Ad
     public function rules()
     {
         return [
-            [['id', 'category_id', 'user_id'], 'integer'],
-            [['ad_type', 'subject', 'description', 'period', 'status', 'expire_at', 'created_at', 'updated_at'], 'safe'],
-            [['price'], 'number'],
+            [['id'], 'integer'],
+            [['name', 'status', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -42,7 +41,7 @@ class AdSearch extends Ad
      */
     public function search($params)
     {
-        $query = Ad::find();
+        $query = Donnerie::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,18 +57,11 @@ class AdSearch extends Ad
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'category_id' => $this->category_id,
-            'price' => $this->price,
-            'user_id' => $this->user_id,
-            'expire_at' => $this->expire_at,
-            'created_at' => $this->created_at,
+           'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'ad_type', $this->ad_type])
-            ->andFilterWhere(['like', 'subject', $this->subject])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'period', $this->period])
+        $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;

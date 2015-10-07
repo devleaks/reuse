@@ -4,14 +4,14 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use backend\assets\AppAsset;
-use common\components\MenuHelper;
+use common\models\User;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
 $asset = AppAsset::register($this);
 
-$role = MenuHelper::getRole();
+$role = User::getRole();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

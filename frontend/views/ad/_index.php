@@ -21,7 +21,7 @@ use yii\grid\GridView;
 
             // 'id',
 			[
-				'attribute' => 'topcat',
+				'attribute' => 'ad_type',
 				'label' => Yii::t('app', 'Type'),
 				'filter' => [
 					Ad::TYPE_OFFER => Yii::t('app', Ad::TYPE_OFFER),
@@ -45,7 +45,7 @@ use yii\grid\GridView;
 				'filter' => [
 					Ad::STATUS_PENDING => Yii::t('app', Ad::STATUS_PENDING),
 					Ad::STATUS_ACTIVE => Yii::t('app', Ad::STATUS_ACTIVE),
-					Ad::STATUS_EXPIRED => Yii::t('app', Ad::STATUS_EXPIRED),
+					Ad::STATUS_DISABLED => Yii::t('app', Ad::STATUS_DISABLED),
 				],
 			],
             // 'user_id',

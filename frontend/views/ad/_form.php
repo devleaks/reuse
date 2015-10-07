@@ -30,7 +30,7 @@ if(! $model->expire_at)
 	]);
 	?>
 
-    <?= $form->field($model, 'topcat')->radioList([
+    <?= $form->field($model, 'ad_type')->radioList([
 			Ad::TYPE_OFFER => Yii::t('app', Ad::TYPE_OFFER),
 			Ad::TYPE_DEMAND => Yii::t('app', Ad::TYPE_DEMAND),
 			Ad::TYPE_LEND => Yii::t('app', Ad::TYPE_LEND),

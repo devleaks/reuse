@@ -1,18 +1,18 @@
 <?php
 
-namespace frontend\controllers;
+namespace backend\modules\admin\controllers;
 
 use Yii;
-use common\models\Ad;
-use common\models\AdSearch;
+use common\models\Donnerie;
+use common\models\DonnerieSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AdController implements the CRUD actions for Ad model.
+ * DonnerieController implements the CRUD actions for Donnerie model.
  */
-class AdController extends Controller
+class DonnerieController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class AdController extends Controller
     }
 
     /**
-     * Lists all Ad models.
+     * Lists all Donnerie models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AdSearch();
+        $searchModel = new DonnerieSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,51 +42,33 @@ class AdController extends Controller
     }
 
     /**
-     * Lists all Ad models.
-     * @return mixed
-     */
-    public function actionMine()
-    {
-        $searchModel = new AdSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-		$dataProvider->query->andWhere(['user_id' => Yii::$app->user->identity->id]);
-
-        return $this->render('mine', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single Ad model.
+     * Displays a single Donnerie model or Edit it.
      * @param integer $id
      * @return mixed
      */
-	public function actionView($id) {
-        $model=$this->findModel($id);
+    public function actionView($id)
+    {
+        $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id'=>$model->id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('view', ['model'=>$model]);
+            return $this->render('view', [
+                'model' => $model,
+            ]);
         }
     }
 
-
     /**
-     * Creates a new Ad model.
+     * Creates a new Donnerie model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Ad();
+        $model = new Donnerie();
 
-		$model->status = Ad::STATUS_PENDING;
-		$model->user_id = Yii::$app->user->identity->id;
-		$model->donnerie_id = Yii::$app->user->identity->donnerie_id;
-
-        if ($model->load(Yii::$app->request->post()) && $model->save(true, ['id','category_id','ad_type','subject','description','price','period','status','user_id','expire_at','donnerie_id','created_at','updated_at'])) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -96,7 +78,7 @@ class AdController extends Controller
     }
 
     /**
-     * Deletes an existing Ad model.
+     * Deletes an existing Donnerie model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -109,15 +91,15 @@ class AdController extends Controller
     }
 
     /**
-     * Finds the Ad model based on its primary key value.
+     * Finds the Donnerie model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Ad the loaded model
+     * @return Donnerie the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Ad::findOne($id)) !== null) {
+        if (($model = Donnerie::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

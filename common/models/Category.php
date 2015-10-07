@@ -35,4 +35,19 @@ class Category extends _Category
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'Category'),
+            'name' => Yii::t('app', 'Name'),
+            'position' => Yii::t('app', 'Position'),
+            'status' => Yii::t('app', 'Status'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+        ];
+    }
+
 }

@@ -103,4 +103,22 @@ class AdController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+	/**
+	 * Bulk update status or delete for PJAXed gridview.
+	 */
+    public function actionBulkStatus()
+    {
+		$ids = (array)Yii::$app->request->post('ids'); // Array or selected records primary keys
+		$status = Yii::$app->request->post('status');
+
+	    if (!$ids) // Preventing extra unnecessary query
+	        return;
+
+		foreach(Ad::find()->andWhere(['id' => $ids])->each() as $r) {
+			$r->status = $status;
+			$r->save();
+        }
+    }
+
 }

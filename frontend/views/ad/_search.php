@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'category_id') ?>
 
-    <?= $form->field($model, 'topcat') ?>
+    <?= $form->field($model, 'ad_type') ?>
 
     <?= $form->field($model, 'subject') ?>
 

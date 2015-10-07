@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	    ],
 		'labelColOptions' => ['style' => 'width: 30%'],
         'attributes' => [
-            'topcat',
+            'ad_type',
             'category_id',
             'status',
             'expire_at',

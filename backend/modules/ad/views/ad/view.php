@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
        	'attributes' => [
 			'donnerie_id',
             'category_id',
-            'topcat',
+            'ad_type',
             'subject',
             'description',
             'price',

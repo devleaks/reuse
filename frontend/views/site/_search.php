@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use common\models\Ad;
@@ -12,16 +13,16 @@ use common\models\Category;
 	
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'category_id')->checkboxList(ArrayHelper::map(Category::find()->orderBy('name')->asArray()->all(), 'id', 'name'))->label('Category') ?>
-
-    <?= $form->field($model, 'topcat')->checkboxList([
+    <?= $form->field($model, 'ad_type')->checkboxList([
 			Ad::TYPE_OFFER => Yii::t('app', Ad::TYPE_OFFER),
 			Ad::TYPE_DEMAND => Yii::t('app', Ad::TYPE_DEMAND),
 			Ad::TYPE_LEND => Yii::t('app', Ad::TYPE_LEND),
 			Ad::TYPE_BORROW => Yii::t('app', Ad::TYPE_BORROW),
 	]) ?>
 
-    <?= $form->field($model, 'subject')->textInput(['maxlength' => 80]) ?>
+    <?= $form->field($model, 'category_id')->checkboxList(ArrayHelper::map(Category::find()->orderBy('name')->asArray()->all(), 'id', 'name'))->label('Category') ?>
+
+    <?= $form->field($model, 'search')->textInput(['maxlength' => 40]) ?>
 
 
     <div class="form-group">

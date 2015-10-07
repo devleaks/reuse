@@ -10,6 +10,9 @@ use yii\db\ActiveRecord;
  */
 class Donnerie extends _Donnerie
 {
+	const STATUS_ACTIVE = 'ACTIVE';
+	const STATUS_RETIRED = 'RETIRED';
+
     /**
      * @inheritdoc
      */

@@ -20,7 +20,7 @@ class Ad extends _Ad
 	
 	const STATUS_ACTIVE = 'ACTIVE';
 	const STATUS_PENDING = 'PENDING';
-	const STATUS_EXPIRED = 'EXPIRED';
+	const STATUS_DISABLED = 'DISABLED';
 
 
     /**
@@ -41,6 +41,28 @@ class Ad extends _Ad
 	                'class' => MediaBehavior::className(),
 	                'mediasAttributes' => ['picture'],
 	            ]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'Ad'),
+	        'donnerie_id' => Yii::t('app', 'Donnerie'),
+	        'ad_type' => Yii::t('app', 'Ad Type'),
+            'category_id' => Yii::t('app', 'Category'),
+            'user_id' => Yii::t('app', 'User'),
+            'subject' => Yii::t('app', 'Subject'),
+            'description' => Yii::t('app', 'Description'),
+            'price' => Yii::t('app', 'Price'),
+            'period' => Yii::t('app', 'Period'),
+            'status' => Yii::t('app', 'Status'),
+            'expire_at' => Yii::t('app', 'Expire At'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 

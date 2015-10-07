@@ -10,6 +10,8 @@ use yii\db\ActiveRecord;
  */
 class User extends _User
 {
+	const DEFAULT_ROLE = 'visitor';
+	
     /**
      * @inheritdoc
      */
@@ -26,5 +28,18 @@ class User extends _User
                 ],
         ];
     }
+
+	/**
+	 * Returns "league" role of user, from roles attributiion. Default is golfer. Null if not loggued in.
+	 */
+    static public function getRole() {
+		if(!Yii::$app->user->isGuest) {
+			if($user = User::findOne(Yii::$app->user->identity->id))
+				if($key = array_search($user->role, Yii::$app->params['valid_roles']))
+					return $key;
+			return self::DEFAULT_ROLE;
+		}
+		return null;
+	}
 
 }

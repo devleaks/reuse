@@ -1,16 +1,25 @@
 <?php
 use yii\helpers\Html;
-use yii\grid\GridView;
+use yii\widgets\ListView;
 use frontend\widgets\LatestAds;
 	
 /* @var $this yii\web\View */
-$this->title = 'Latest Ads';
+$this->title = 'Ads';
 ?>
 <div class="site-ads">
 	
-    <?= LatestAds::widget([
-			'ads_count' => 8,
-			'words' => 30
-	]); ?>
+	<?php if($ads): ?>
+	    <?= ListView::widget([
+	        'dataProvider' => $ads,
+			'itemView' => '_ad-short',
+			'summary' => false,
+	    ]); ?>
+	
+	<?php else: ?>
+	    <?= LatestAds::widget([
+				'ads_count' => 8,
+				'words' => 30
+		]); ?>
+	<?php endif; ?>
 
 </div>

@@ -12,8 +12,6 @@ class Menu extends _Menu
 {
 	/** Name of top menu (convention) */
 	const TOP = 'TOP';
-	const DEFAULT_ROLE = 'visitor';
-	
     public $parent_name;
 
     /**
@@ -48,19 +46,6 @@ class Menu extends _Menu
                 ],
         ];
     }
-
-	/**
-	 * Returns "league" role of user, from roles attributiion. Default is golfer. Null if not loggued in.
-	 */
-    static public function getRole() {
-		if(!Yii::$app->user->isGuest) {
-			if($user = User::findOne(Yii::$app->user->identity->id))
-				if($key = array_search($user->role, Yii::$app->params['valid_roles']))
-					return $key;
-			return self::DEFAULT_ROLE;
-		}
-		return null;
-	}
 
     /**
      * Use to loop detected.

@@ -22,7 +22,7 @@ class m130524_201442_init extends Migration
 					'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
 					0 => 'PRIMARY KEY (`id`)',
 					'category_id' => 'INT(11) NOT NULL',
-					'topcat' => 'VARCHAR(20) NOT NULL',
+					'ad_type' => 'VARCHAR(20) NOT NULL',
 					'subject' => 'VARCHAR(80) NOT NULL',
 					'description' => 'VARCHAR(255) NOT NULL',
 					'price' => 'FLOAT NULL',

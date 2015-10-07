@@ -7,7 +7,7 @@
 #
 # Hôte: imac.local (MySQL 5.6.26)
 # Base de données: usagain
-# Temps de génération: 2015-10-04 14:36:32 +0000
+# Temps de génération: 2015-10-07 16:29:23 +0000
 # ************************************************************
 
 
@@ -28,7 +28,7 @@ DROP TABLE IF EXISTS `ad`;
 CREATE TABLE `ad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
-  `topcat` varchar(20) NOT NULL,
+  `ad_type` varchar(20) NOT NULL,
   `subject` varchar(80) NOT NULL,
   `description` varchar(255) NOT NULL,
   `price` float DEFAULT NULL,
@@ -42,20 +42,20 @@ CREATE TABLE `ad` (
   PRIMARY KEY (`id`),
   KEY `category_id_idxfk` (`category_id`),
   KEY `user_id_idxfk_1` (`user_id`),
-  KEY `donnerie_id_idxfk_5` (`donnerie_id`),
-  CONSTRAINT `ad_ibfk_13` FOREIGN KEY (`donnerie_id`) REFERENCES `donnerie` (`id`),
-  CONSTRAINT `ad_ibfk_14` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
-  CONSTRAINT `ad_ibfk_15` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  KEY `donnerie_id_idxfk_6` (`donnerie_id`),
+  CONSTRAINT `ad_ibfk_16` FOREIGN KEY (`donnerie_id`) REFERENCES `donnerie` (`id`),
+  CONSTRAINT `ad_ibfk_17` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
+  CONSTRAINT `ad_ibfk_18` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `ad` WRITE;
 /*!40000 ALTER TABLE `ad` DISABLE KEYS */;
 
-INSERT INTO `ad` (`id`, `category_id`, `topcat`, `subject`, `description`, `price`, `period`, `status`, `user_id`, `expire_at`, `created_at`, `updated_at`, `donnerie_id`)
+INSERT INTO `ad` (`id`, `category_id`, `ad_type`, `subject`, `description`, `price`, `period`, `status`, `user_id`, `expire_at`, `created_at`, `updated_at`, `donnerie_id`)
 VALUES
-	(1,1,'OFFER','Ford Mustang','Belle',NULL,NULL,'PENDING',2,'2015-04-16 18:00:49','2015-04-01 09:08:00','2015-10-04 06:41:03',1),
-	(2,1,'OFFER','VW Camper','VW Camper',NULL,NULL,'PENDING',2,'2015-04-16 18:00:49','2015-04-01 09:08:00','2015-04-01 09:08:00',1),
-	(5,2,'DEMAND','ton','ton',NULL,NULL,'PENDING',2,'2015-10-11 07:08:05','2015-10-04 07:08:23','2015-10-04 07:10:12',1);
+	(1,1,'OFFER','Ford Mustang','Belle',NULL,NULL,'PENDING',2,'2015-04-16 18:00:49','2015-04-01 09:08:00','2015-10-07 08:46:00',1),
+	(2,1,'DEMAND','VW Camper','VW Camper',NULL,NULL,'PENDING',2,'2015-04-16 18:00:49','2015-04-01 09:08:00','2015-10-07 08:46:00',1),
+	(5,2,'DEMAND','Tondeuse','Tondeuse sur laquelle on s\'assied. Ouf!',NULL,NULL,'ACTIVE',2,'2015-10-11 07:08:05','2015-10-04 07:08:23','2015-10-07 08:44:34',1);
 
 /*!40000 ALTER TABLE `ad` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -97,19 +97,21 @@ DROP TABLE IF EXISTS `donnerie`;
 
 CREATE TABLE `donnerie` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) DEFAULT NULL,
+  `layout` varchar(40) DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `name` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `donnerie` WRITE;
 /*!40000 ALTER TABLE `donnerie` DISABLE KEYS */;
 
-INSERT INTO `donnerie` (`id`, `status`, `created_at`, `updated_at`, `name`)
+INSERT INTO `donnerie` (`id`, `name`, `layout`, `status`, `created_at`, `updated_at`)
 VALUES
-	(1,'ACTIVE',NULL,NULL,'Etterbeek');
+	(1,'Etterbeek',NULL,'ACTIVE',NULL,NULL),
+	(2,'Louvain-la-Neuve',NULL,'ACTIVE',NULL,NULL);
 
 /*!40000 ALTER TABLE `donnerie` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -130,8 +132,30 @@ CREATE TABLE `donnerie_category` (
   PRIMARY KEY (`id`),
   KEY `donnerie_id_idxfk` (`donnerie_id`),
   KEY `category_id_idxfk` (`category_id`),
-  CONSTRAINT `donnerie_category_ibfk_13` FOREIGN KEY (`donnerie_id`) REFERENCES `donnerie` (`id`),
-  CONSTRAINT `donnerie_category_ibfk_14` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
+  CONSTRAINT `donnerie_category_ibfk_17` FOREIGN KEY (`donnerie_id`) REFERENCES `donnerie` (`id`),
+  CONSTRAINT `donnerie_category_ibfk_18` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+# Affichage de la table donnerie_donnerie
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `donnerie_donnerie`;
+
+CREATE TABLE `donnerie_donnerie` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `donnerie_id` int(11) NOT NULL,
+  `related_id` int(11) NOT NULL,
+  `related_type` varchar(20) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `donnerie_id_idxfk_1` (`donnerie_id`),
+  KEY `related_id_idxfk` (`related_id`),
+  CONSTRAINT `donnerie_donnerie_ibfk_1` FOREIGN KEY (`donnerie_id`) REFERENCES `donnerie` (`id`),
+  CONSTRAINT `donnerie_donnerie_ibfk_2` FOREIGN KEY (`related_id`) REFERENCES `donnerie` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -169,10 +193,10 @@ CREATE TABLE `menu` (
   `updated_at` int(11) DEFAULT NULL,
   `donnerie_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `donnerie_id_idxfk_1` (`donnerie_id`),
+  KEY `donnerie_id_idxfk_2` (`donnerie_id`),
   KEY `parent_id_idxfk` (`parent_id`),
-  CONSTRAINT `menu_ibfk_7` FOREIGN KEY (`donnerie_id`) REFERENCES `donnerie` (`id`),
-  CONSTRAINT `menu_ibfk_8` FOREIGN KEY (`parent_id`) REFERENCES `menu` (`id`)
+  CONSTRAINT `menu_ibfk_11` FOREIGN KEY (`donnerie_id`) REFERENCES `donnerie` (`id`),
+  CONSTRAINT `menu_ibfk_12` FOREIGN KEY (`parent_id`) REFERENCES `menu` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `menu` WRITE;
@@ -196,6 +220,7 @@ DROP TABLE IF EXISTS `message`;
 
 CREATE TABLE `message` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `donnerie_id` int(11) DEFAULT NULL,
   `type` varchar(20) NOT NULL,
   `subject` varchar(80) NOT NULL,
   `text` text NOT NULL,
@@ -207,25 +232,24 @@ CREATE TABLE `message` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `name` varchar(40) NOT NULL,
-  `donnerie_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `donnerie_id_idxfk_2` (`donnerie_id`),
+  KEY `donnerie_id_idxfk_3` (`donnerie_id`),
   CONSTRAINT `message_ibfk_1` FOREIGN KEY (`donnerie_id`) REFERENCES `donnerie` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
 
-INSERT INTO `message` (`id`, `type`, `subject`, `text`, `language`, `position`, `sticky`, `status`, `expire_at`, `created_at`, `updated_at`, `name`, `donnerie_id`)
+INSERT INTO `message` (`id`, `donnerie_id`, `type`, `subject`, `text`, `language`, `position`, `sticky`, `status`, `expire_at`, `created_at`, `updated_at`, `name`)
 VALUES
-	(1,'POST','First blog message','Always displayed.','fr',100,0,'ACTIVE','2015-03-25 14:00:00','2015-03-13 02:15:27','2015-03-24 18:37:12','',NULL),
-	(2,'POST','Cras rhoncus purus vitae','Proin nec felis et leo feugiat pharetra eget vel lectus. Vestibulum fermentum pulvinar augue, quis luctus dolor ultrices sed. Praesent lacinia tortor id massa molestie gravida. In sodales nulla sit amet quam tincidunt fermentum. Nunc sit amet mauris turpis, eget aliquet purus. Ut viverra urna nec eros pellentesque luctus. Cras rhoncus purus vitae felis ultrices euismod. Curabitur eu est ac justo aliquam suscipit. ','fr',100,0,'ACTIVE',NULL,'2015-03-15 03:57:14','2015-03-15 03:57:14','',NULL),
-	(3,'POST','Nulla at mi eget leo dictum tristique. ','Sed eget purus non lorem fringilla dignissim ut pretium nisl. Fusce vulputate mollis eros, sit amet aliquam ante scelerisque lobortis. In vitae diam purus, id dictum massa. Sed ut augue dapibus neque aliquet euismod nec in sapien. Quisque a lectus sed nisl ullamcorper semper id eu nisi. Nulla at mi eget leo dictum tristique. Maecenas porttitor semper sapien, vitae vulputate leo aliquam eu. Etiam a orci sed dui adipiscing varius eget at arcu.','fr',100,0,'ACTIVE',NULL,'2015-03-15 03:57:34','2015-03-15 03:57:34','',NULL),
-	(4,'PAGE','Suspendisse at diam mauris, eu dapibus eros. (long)','In at tellus odio, sed porttitor enim. Sed vel neque sit amet nulla ultricies tempus nec pulvinar metus. Proin elementum pellentesque purus, ac lacinia sem suscipit non. In ut turpis in magna accumsan condimentum. Vivamus id turpis feugiat velit fermentum feugiat non sed massa. Nam hendrerit enim vel nisl hendrerit commodo. Nunc ut magna sem, vehicula dapibus dui. Nam pretium ligula at nisl ultricies vel eleifend nisi fermentum.\r\n\r\nVestibulum a nisi lorem, viverra aliquet dolor. Suspendisse eu justo sed lacus consequat volutpat in eget tortor. Aenean pulvinar tortor eget magna ornare eu ultricies augue sagittis. Aenean porta massa sodales leo placerat at cursus dolor tristique. Quisque nec dolor massa, at posuere nisi. Quisque cursus elit eget odio viverra et condimentum dui lacinia. Nam nec est erat, non mattis purus.\r\n\r\nSuspendisse rhoncus quam sed ligula lobortis iaculis. In ac nunc id quam pulvinar egestas. Suspendisse vestibulum elit vitae lectus laoreet malesuada. Nullam sollicitudin hendrerit velit, eget placerat diam tristique eu. Integer sit amet felis ac nunc accumsan commodo et non tellus. Cras elementum bibendum risus, id pharetra leo aliquet vitae. Suspendisse in urna eget sem rhoncus facilisis id et sapien.\r\n\r\nNullam vitae odio purus, eget tempor magna. Nam id sem ligula, nec accumsan mauris. Praesent ac nisi nec nulla aliquet venenatis et in mauris. Nam ut ante vitae leo viverra lobortis. Suspendisse at diam mauris, eu dapibus eros. Donec fermentum diam id turpis pellentesque et sollicitudin nibh adipiscing. Etiam sagittis blandit velit, et facilisis neque condimentum ut. Mauris quis diam mauris, tristique tristique turpis.\r\n\r\nSed eu augue non eros molestie aliquam venenatis sit amet erat. Mauris vitae dui at diam imperdiet blandit. Nullam eget nisi in dolor mollis ullamcorper. Nunc sit amet nisl vel ligula venenatis sollicitudin et et risus. In rutrum fringilla erat, at iaculis tellus lacinia id. Fusce semper risus in ante accumsan lobortis. Suspendisse at diam mauris, eu dapibus eros.\r\n\r\nPraesent sodales aliquet mauris, et blandit urna tincidunt non. Vestibulum consectetur mauris blandit nibh aliquet dignissim. Sed congue purus vitae tortor lacinia pulvinar. Donec convallis lacus quis elit mollis egestas vitae et nisl. Donec tempus orci in libero posuere eget pharetra sem luctus. Nunc sit amet mauris turpis, eget aliquet purus.','fr',100,0,'ACTIVE',NULL,'2015-03-15 03:58:08','2015-03-15 03:58:08','',NULL),
-	(5,'PAGE','Donec mollis libero vitae tortor elementum ','Etiam vitae orci non ante auctor aliquam. Maecenas non dolor tincidunt sem ultrices lobortis quis eget leo. Ut auctor tellus ac mauris ultrices convallis. Cras nec tortor ac odio viverra rhoncus. Nam molestie cursus nibh, in ultrices erat tempus et. Cras vel justo tortor, id molestie orci. Proin ut ligula ut dolor dignissim sodales. Aliquam et odio felis, sed venenatis justo.\r\n\r\nPellentesque eget tellus vel mauris vestibulum molestie ut sed diam. Donec non diam sed eros facilisis interdum. Morbi bibendum lacus commodo eros scelerisque sollicitudin pulvinar libero facilisis. Fusce sed turpis metus, eu rutrum lacus. Ut viverra urna nec eros pellentesque luctus. Morbi dictum massa sed lacus elementum consequat. Pellentesque sit amet turpis quis diam elementum semper sodales id est. Aliquam vel mi non elit posuere placerat sed vitae lorem.\r\n\r\nInteger convallis faucibus erat, et convallis massa feugiat et. Pellentesque pulvinar neque in ligula aliquet lacinia. Donec porttitor tellus at nibh accumsan quis aliquam ipsum consequat. Nam pretium ligula at nisl ultricies vel eleifend nisi fermentum. Praesent sed purus neque, a suscipit arcu. Suspendisse ac dolor et dolor aliquet consequat. Aliquam id magna urna, in elementum augue. Ut suscipit tincidunt odio, ac lobortis quam euismod non.\r\n\r\nMauris accumsan rutrum nisl, vitae porta neque pulvinar quis. Donec mollis libero vitae tortor elementum a pulvinar enim bibendum. Curabitur ut nulla non leo tristique eleifend. Donec et felis sed leo aliquam auctor quis nec massa. Praesent lacinia imperdiet turpis, ut tincidunt metus feugiat nec. Morbi fermentum faucibus erat, sit amet euismod urna consectetur ac.','fr',100,0,'ACTIVE',NULL,'2015-03-15 03:58:37','2015-03-15 03:58:37','',NULL),
-	(6,'POST','Cras vel justo tortor','Aliquam facilisis porttitor odio, sagittis interdum elit vulputate sit amet. Donec vestibulum tortor vitae ligula pulvinar semper. Nunc in turpis quam, nec sodales turpis. Curabitur ultrices enim ac nisl dictum nec luctus eros mattis. Praesent a nibh iaculis nisi viverra laoreet a at mauris. Donec lobortis quam ac justo molestie sodales. Duis sit amet nisl quis neque commodo ullamcorper ut mattis metus.\r\n\r\nInteger consequat aliquet ipsum, sed congue metus mollis ac. Nam vel metus in lacus tincidunt euismod. Pellentesque mattis nisl sed justo suscipit ullamcorper. Sed congue ullamcorper ligula, eget dictum lectus consequat ut. Cras luctus felis non ligula rhoncus a convallis massa porta. Integer ut diam nec arcu faucibus vehicula id eu magna. Mauris dictum erat sed libero sollicitudin laoreet cursus lectus tempor. Phasellus ultrices interdum nisl, in tristique massa egestas dictum.\r\n\r\nMaecenas ac enim non arcu malesuada posuere id vitae magna. Praesent at elit ut nisi ultrices dapibus ac eget felis. Nulla imperdiet orci in metus consequat interdum. Aliquam sodales dui non velit luctus tincidunt. Aenean pulvinar tortor eget magna ornare eu ultricies augue sagittis. Cras vel justo tortor, id molestie orci. Ut fermentum elit non risus dictum laoreet. Sed non ante luctus magna malesuada interdum ut et orci.\r\n','fr',100,0,'ACTIVE',NULL,'2015-03-15 03:58:59','2015-03-15 03:58:59','',NULL),
-	(7,'POST','Mauris at tellus in orci malesuada commodo a vitae nunc.','Ut viverra libero et arcu tincidunt posuere. Aenean pulvinar tortor eget magna ornare eu ultricies augue sagittis. Nullam id lacus libero, at interdum dui. Phasellus ultricies laoreet turpis, et consectetur nunc posuere quis. Maecenas ultrices iaculis ipsum, ut fermentum sem condimentum vitae. Sed sit amet enim in lacus pellentesque posuere id sed est. Nunc eget enim purus, eget tincidunt dui. Integer condimentum vestibulum leo, non sodales tortor posuere et.\r\n\r\nNam vestibulum sem eu libero vulputate et sollicitudin metus condimentum. Ut a nulla vel risus aliquam sagittis. Maecenas adipiscing consectetur ante, a tempor dolor congue et. Sed vitae mi eget ipsum commodo tincidunt sed nec massa. Vestibulum et quam velit, in vestibulum nisi. Vestibulum lacinia molestie massa, et tristique nibh malesuada ornare. Donec porttitor tellus at nibh accumsan quis aliquam ipsum consequat.\r\n\r\nQuisque quis sapien egestas lorem porta ultricies sed a massa. Nulla dapibus lacinia lectus, at cursus orci tincidunt vitae. Praesent vehicula euismod ipsum, sit amet molestie magna faucibus non. Nullam gravida mauris ac arcu vestibulum ultricies. Duis vel leo urna, id bibendum sapien. Aliquam et odio felis, sed venenatis justo. Aliquam vel mi non elit posuere placerat sed vitae lorem.\r\n\r\nMauris at tellus in orci malesuada commodo a vitae nunc. Praesent et dolor et dui tincidunt accumsan at quis ante. Donec eget massa sed felis egestas ornare. Nulla vitae ligula enim, fringilla aliquet lectus. Vestibulum sed est magna, vitae cursus quam. Aenean dapibus ipsum eget libero rutrum sodales. Etiam in tortor quis erat ullamcorper placerat.','fr',100,0,'ACTIVE',NULL,'2015-03-15 03:59:24','2015-03-15 03:59:24','',NULL),
-	(8,'POST','Sed suscipit purus nec risus','Morbi tincidunt lacinia risus, sit amet varius velit imperdiet sit amet. Etiam in tortor quis erat ullamcorper placerat. Aenean elementum odio quis felis tempor pharetra et et tortor. Sed suscipit purus nec risus ullamcorper ac dapibus leo faucibus. Praesent ac nisi nec nulla aliquet venenatis et in mauris. Aenean eu massa sit amet lectus elementum placerat sed eu justo. Aenean placerat orci a purus blandit pharetra. Donec fermentum diam id turpis pellentesque et sollicitudin nibh adipiscing.','fr',100,0,'ACTIVE',NULL,'2015-03-15 03:59:48','2015-03-15 03:59:48','',NULL);
+	(1,NULL,'POST','First blog message','Always displayed.','fr',100,0,'ACTIVE','2015-03-25 14:00:00','2015-03-13 02:15:27','2015-03-24 18:37:12',''),
+	(2,NULL,'POST','Cras rhoncus purus vitae','Proin nec felis et leo feugiat pharetra eget vel lectus. Vestibulum fermentum pulvinar augue, quis luctus dolor ultrices sed. Praesent lacinia tortor id massa molestie gravida. In sodales nulla sit amet quam tincidunt fermentum. Nunc sit amet mauris turpis, eget aliquet purus. Ut viverra urna nec eros pellentesque luctus. Cras rhoncus purus vitae felis ultrices euismod. Curabitur eu est ac justo aliquam suscipit. ','fr',100,0,'ACTIVE',NULL,'2015-03-15 03:57:14','2015-03-15 03:57:14',''),
+	(3,NULL,'POST','Nulla at mi eget leo dictum tristique. ','Sed eget purus non lorem fringilla dignissim ut pretium nisl. Fusce vulputate mollis eros, sit amet aliquam ante scelerisque lobortis. In vitae diam purus, id dictum massa. Sed ut augue dapibus neque aliquet euismod nec in sapien. Quisque a lectus sed nisl ullamcorper semper id eu nisi. Nulla at mi eget leo dictum tristique. Maecenas porttitor semper sapien, vitae vulputate leo aliquam eu. Etiam a orci sed dui adipiscing varius eget at arcu.','fr',100,0,'ACTIVE',NULL,'2015-03-15 03:57:34','2015-03-15 03:57:34',''),
+	(4,NULL,'PAGE','Suspendisse at diam mauris, eu dapibus eros. (long)','In at tellus odio, sed porttitor enim. Sed vel neque sit amet nulla ultricies tempus nec pulvinar metus. Proin elementum pellentesque purus, ac lacinia sem suscipit non. In ut turpis in magna accumsan condimentum. Vivamus id turpis feugiat velit fermentum feugiat non sed massa. Nam hendrerit enim vel nisl hendrerit commodo. Nunc ut magna sem, vehicula dapibus dui. Nam pretium ligula at nisl ultricies vel eleifend nisi fermentum.\r\n\r\nVestibulum a nisi lorem, viverra aliquet dolor. Suspendisse eu justo sed lacus consequat volutpat in eget tortor. Aenean pulvinar tortor eget magna ornare eu ultricies augue sagittis. Aenean porta massa sodales leo placerat at cursus dolor tristique. Quisque nec dolor massa, at posuere nisi. Quisque cursus elit eget odio viverra et condimentum dui lacinia. Nam nec est erat, non mattis purus.\r\n\r\nSuspendisse rhoncus quam sed ligula lobortis iaculis. In ac nunc id quam pulvinar egestas. Suspendisse vestibulum elit vitae lectus laoreet malesuada. Nullam sollicitudin hendrerit velit, eget placerat diam tristique eu. Integer sit amet felis ac nunc accumsan commodo et non tellus. Cras elementum bibendum risus, id pharetra leo aliquet vitae. Suspendisse in urna eget sem rhoncus facilisis id et sapien.\r\n\r\nNullam vitae odio purus, eget tempor magna. Nam id sem ligula, nec accumsan mauris. Praesent ac nisi nec nulla aliquet venenatis et in mauris. Nam ut ante vitae leo viverra lobortis. Suspendisse at diam mauris, eu dapibus eros. Donec fermentum diam id turpis pellentesque et sollicitudin nibh adipiscing. Etiam sagittis blandit velit, et facilisis neque condimentum ut. Mauris quis diam mauris, tristique tristique turpis.\r\n\r\nSed eu augue non eros molestie aliquam venenatis sit amet erat. Mauris vitae dui at diam imperdiet blandit. Nullam eget nisi in dolor mollis ullamcorper. Nunc sit amet nisl vel ligula venenatis sollicitudin et et risus. In rutrum fringilla erat, at iaculis tellus lacinia id. Fusce semper risus in ante accumsan lobortis. Suspendisse at diam mauris, eu dapibus eros.\r\n\r\nPraesent sodales aliquet mauris, et blandit urna tincidunt non. Vestibulum consectetur mauris blandit nibh aliquet dignissim. Sed congue purus vitae tortor lacinia pulvinar. Donec convallis lacus quis elit mollis egestas vitae et nisl. Donec tempus orci in libero posuere eget pharetra sem luctus. Nunc sit amet mauris turpis, eget aliquet purus.','fr',100,0,'ACTIVE',NULL,'2015-03-15 03:58:08','2015-03-15 03:58:08',''),
+	(5,NULL,'PAGE','Donec mollis libero vitae tortor elementum ','Etiam vitae orci non ante auctor aliquam. Maecenas non dolor tincidunt sem ultrices lobortis quis eget leo. Ut auctor tellus ac mauris ultrices convallis. Cras nec tortor ac odio viverra rhoncus. Nam molestie cursus nibh, in ultrices erat tempus et. Cras vel justo tortor, id molestie orci. Proin ut ligula ut dolor dignissim sodales. Aliquam et odio felis, sed venenatis justo.\r\n\r\nPellentesque eget tellus vel mauris vestibulum molestie ut sed diam. Donec non diam sed eros facilisis interdum. Morbi bibendum lacus commodo eros scelerisque sollicitudin pulvinar libero facilisis. Fusce sed turpis metus, eu rutrum lacus. Ut viverra urna nec eros pellentesque luctus. Morbi dictum massa sed lacus elementum consequat. Pellentesque sit amet turpis quis diam elementum semper sodales id est. Aliquam vel mi non elit posuere placerat sed vitae lorem.\r\n\r\nInteger convallis faucibus erat, et convallis massa feugiat et. Pellentesque pulvinar neque in ligula aliquet lacinia. Donec porttitor tellus at nibh accumsan quis aliquam ipsum consequat. Nam pretium ligula at nisl ultricies vel eleifend nisi fermentum. Praesent sed purus neque, a suscipit arcu. Suspendisse ac dolor et dolor aliquet consequat. Aliquam id magna urna, in elementum augue. Ut suscipit tincidunt odio, ac lobortis quam euismod non.\r\n\r\nMauris accumsan rutrum nisl, vitae porta neque pulvinar quis. Donec mollis libero vitae tortor elementum a pulvinar enim bibendum. Curabitur ut nulla non leo tristique eleifend. Donec et felis sed leo aliquam auctor quis nec massa. Praesent lacinia imperdiet turpis, ut tincidunt metus feugiat nec. Morbi fermentum faucibus erat, sit amet euismod urna consectetur ac.','fr',100,0,'ACTIVE',NULL,'2015-03-15 03:58:37','2015-03-15 03:58:37',''),
+	(6,NULL,'POST','Cras vel justo tortor','Aliquam facilisis porttitor odio, sagittis interdum elit vulputate sit amet. Donec vestibulum tortor vitae ligula pulvinar semper. Nunc in turpis quam, nec sodales turpis. Curabitur ultrices enim ac nisl dictum nec luctus eros mattis. Praesent a nibh iaculis nisi viverra laoreet a at mauris. Donec lobortis quam ac justo molestie sodales. Duis sit amet nisl quis neque commodo ullamcorper ut mattis metus.\r\n\r\nInteger consequat aliquet ipsum, sed congue metus mollis ac. Nam vel metus in lacus tincidunt euismod. Pellentesque mattis nisl sed justo suscipit ullamcorper. Sed congue ullamcorper ligula, eget dictum lectus consequat ut. Cras luctus felis non ligula rhoncus a convallis massa porta. Integer ut diam nec arcu faucibus vehicula id eu magna. Mauris dictum erat sed libero sollicitudin laoreet cursus lectus tempor. Phasellus ultrices interdum nisl, in tristique massa egestas dictum.\r\n\r\nMaecenas ac enim non arcu malesuada posuere id vitae magna. Praesent at elit ut nisi ultrices dapibus ac eget felis. Nulla imperdiet orci in metus consequat interdum. Aliquam sodales dui non velit luctus tincidunt. Aenean pulvinar tortor eget magna ornare eu ultricies augue sagittis. Cras vel justo tortor, id molestie orci. Ut fermentum elit non risus dictum laoreet. Sed non ante luctus magna malesuada interdum ut et orci.\r\n','fr',100,0,'ACTIVE',NULL,'2015-03-15 03:58:59','2015-03-15 03:58:59',''),
+	(7,NULL,'POST','Mauris at tellus in orci malesuada commodo a vitae nunc.','Ut viverra libero et arcu tincidunt posuere. Aenean pulvinar tortor eget magna ornare eu ultricies augue sagittis. Nullam id lacus libero, at interdum dui. Phasellus ultricies laoreet turpis, et consectetur nunc posuere quis. Maecenas ultrices iaculis ipsum, ut fermentum sem condimentum vitae. Sed sit amet enim in lacus pellentesque posuere id sed est. Nunc eget enim purus, eget tincidunt dui. Integer condimentum vestibulum leo, non sodales tortor posuere et.\r\n\r\nNam vestibulum sem eu libero vulputate et sollicitudin metus condimentum. Ut a nulla vel risus aliquam sagittis. Maecenas adipiscing consectetur ante, a tempor dolor congue et. Sed vitae mi eget ipsum commodo tincidunt sed nec massa. Vestibulum et quam velit, in vestibulum nisi. Vestibulum lacinia molestie massa, et tristique nibh malesuada ornare. Donec porttitor tellus at nibh accumsan quis aliquam ipsum consequat.\r\n\r\nQuisque quis sapien egestas lorem porta ultricies sed a massa. Nulla dapibus lacinia lectus, at cursus orci tincidunt vitae. Praesent vehicula euismod ipsum, sit amet molestie magna faucibus non. Nullam gravida mauris ac arcu vestibulum ultricies. Duis vel leo urna, id bibendum sapien. Aliquam et odio felis, sed venenatis justo. Aliquam vel mi non elit posuere placerat sed vitae lorem.\r\n\r\nMauris at tellus in orci malesuada commodo a vitae nunc. Praesent et dolor et dui tincidunt accumsan at quis ante. Donec eget massa sed felis egestas ornare. Nulla vitae ligula enim, fringilla aliquet lectus. Vestibulum sed est magna, vitae cursus quam. Aenean dapibus ipsum eget libero rutrum sodales. Etiam in tortor quis erat ullamcorper placerat.','fr',100,0,'ACTIVE',NULL,'2015-03-15 03:59:24','2015-03-15 03:59:24',''),
+	(8,NULL,'POST','Sed suscipit purus nec risus','Morbi tincidunt lacinia risus, sit amet varius velit imperdiet sit amet. Etiam in tortor quis erat ullamcorper placerat. Aenean elementum odio quis felis tempor pharetra et et tortor. Sed suscipit purus nec risus ullamcorper ac dapibus leo faucibus. Praesent ac nisi nec nulla aliquet venenatis et in mauris. Aenean eu massa sit amet lectus elementum placerat sed eu justo. Aenean placerat orci a purus blandit pharetra. Donec fermentum diam id turpis pellentesque et sollicitudin nibh adipiscing.','fr',100,0,'ACTIVE',NULL,'2015-03-15 03:59:48','2015-03-15 03:59:48','');
 
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -280,7 +304,7 @@ CREATE TABLE `newsletter` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `donnerie_id_idxfk_3` (`donnerie_id`),
+  KEY `donnerie_id_idxfk_4` (`donnerie_id`),
   CONSTRAINT `newsletter_ibfk_1` FOREIGN KEY (`donnerie_id`) REFERENCES `donnerie` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -401,6 +425,9 @@ DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `donnerie_id` int(11) NOT NULL,
+  `language` varchar(20) DEFAULT NULL,
+  `role` varchar(20) DEFAULT NULL,
   `username` varchar(25) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password_hash` varchar(60) NOT NULL,
@@ -409,26 +436,24 @@ CREATE TABLE `user` (
   `unconfirmed_email` varchar(255) DEFAULT NULL,
   `blocked_at` int(11) DEFAULT NULL,
   `registration_ip` int(11) unsigned DEFAULT NULL,
+  `flags` int(11) NOT NULL DEFAULT '0',
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
-  `flags` int(11) NOT NULL DEFAULT '0',
-  `role` varchar(20) DEFAULT NULL,
-  `donnerie_id` int(11) NOT NULL,
-  `language` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_unique_username` (`username`),
   UNIQUE KEY `user_unique_email` (`email`),
-  KEY `donnerie_id_idxfk_4` (`donnerie_id`),
+  KEY `donnerie_id_idxfk_5` (`donnerie_id`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`donnerie_id`) REFERENCES `donnerie` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 
-INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `role`, `donnerie_id`, `language`)
+INSERT INTO `user` (`id`, `donnerie_id`, `language`, `role`, `username`, `email`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `flags`, `created_at`, `updated_at`)
 VALUES
-	(1,'admin','manager@reuse.local','$2y$12$Rb9j3iW6LHSdMEqj/8D6jO.v3QkAMwR8v57.s1aYhrV/o.90wVZBK','FF0NbDaLv6D6w2C4OQ0wWv3AWYQmGtm1',1427815603,NULL,NULL,192168,1427815383,1427815603,0,'admin',1,NULL),
-	(2,'pierre','pierre@reuse.local','$2y$12$9AmzzfpJ9jjEorhZVINnzujYzdsNgyls9a/evSwoyBkjwTiMwN9CS','SStmCVYh4JLWlDVkKqEyFS1liBXd3zxr',1427872648,NULL,NULL,192,1427872623,1427872623,0,NULL,1,'fr');
+	(1,1,NULL,'admin','admin','manager@reuse.local','$2y$12$Rb9j3iW6LHSdMEqj/8D6jO.v3QkAMwR8v57.s1aYhrV/o.90wVZBK','FF0NbDaLv6D6w2C4OQ0wWv3AWYQmGtm1',1427815603,NULL,NULL,192168,0,1427815383,1427815603),
+	(2,1,'fr',NULL,'pierre','pierre@reuse.local','$2y$12$9AmzzfpJ9jjEorhZVINnzujYzdsNgyls9a/evSwoyBkjwTiMwN9CS','SStmCVYh4JLWlDVkKqEyFS1liBXd3zxr',1427872648,NULL,NULL,192,0,1427872623,1427872623),
+	(3,2,'fr','manager','damien','damien@reuse.local','$2y$12$9AmzzfpJ9jjEorhZVINnzujYzdsNgyls9a/evSwoyBkjwTiMwN9CS','SStmCVYh4JLWlDVkKqEyFS1liBXd3zxr',1427872648,NULL,NULL,192,0,1427872623,1427872623);
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -450,8 +475,8 @@ CREATE TABLE `user_ad` (
   PRIMARY KEY (`id`),
   KEY `ad_id_idxfk` (`ad_id`),
   KEY `user_id_idxfk` (`user_id`),
-  CONSTRAINT `user_ad_ibfk_3` FOREIGN KEY (`ad_id`) REFERENCES `ad` (`id`),
-  CONSTRAINT `user_ad_ibfk_4` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  CONSTRAINT `user_ad_ibfk_1` FOREIGN KEY (`ad_id`) REFERENCES `ad` (`id`),
+  CONSTRAINT `user_ad_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

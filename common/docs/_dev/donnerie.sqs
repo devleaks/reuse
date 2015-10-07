@@ -5,11 +5,11 @@
         <schema><![CDATA[]]></schema>
         <tableType><![CDATA[InnoDB]]></tableType>
         <location>
-            <x>320.00</x>
+            <x>0.00</x>
             <y>704.00</y>
         </location>
         <size>
-            <width>192.00</width>
+            <width>256.00</width>
             <height>256.00</height>
         </size>
         <zorder>6</zorder>
@@ -106,7 +106,7 @@
             <destinationCardinality>0</destinationCardinality>
             <referencesFieldUID><![CDATA[7721BE75-D2A3-47A3-9CC3-342751D89EC7]]></referencesFieldUID>
             <referencesTableUID><![CDATA[FEC1DD55-B08B-4F78-BBE4-00E9F3DDDB88]]></referencesTableUID>
-            <connectorMidPoint><![CDATA[800.000000]]></connectorMidPoint>
+            <connectorMidPoint><![CDATA[800.390625]]></connectorMidPoint>
             <notNull><![CDATA[0]]></notNull>
             <uid><![CDATA[55D063C9-4774-49E7-BA16-D0F66AAF3870]]></uid>
         </SQLField>
@@ -196,7 +196,7 @@
             <y>320.00</y>
         </location>
         <size>
-            <width>192.00</width>
+            <width>256.00</width>
             <height>192.00</height>
         </size>
         <zorder>0</zorder>
@@ -250,7 +250,7 @@
         <name><![CDATA[history]]></name>
         <schema><![CDATA[]]></schema>
         <location>
-            <x>1088.00</x>
+            <x>320.00</x>
             <y>704.00</y>
         </location>
         <size>
@@ -318,12 +318,12 @@
         <name><![CDATA[donnerie_category]]></name>
         <schema><![CDATA[]]></schema>
         <location>
-            <x>832.00</x>
+            <x>896.00</x>
             <y>64.00</y>
         </location>
         <size>
             <width>256.00</width>
-            <height>140.00</height>
+            <height>192.00</height>
         </size>
         <zorder>9</zorder>
         <SQLField>
@@ -345,7 +345,7 @@
             <destinationCardinality>0</destinationCardinality>
             <referencesFieldUID><![CDATA[7721BE75-D2A3-47A3-9CC3-342751D89EC7]]></referencesFieldUID>
             <referencesTableUID><![CDATA[FEC1DD55-B08B-4F78-BBE4-00E9F3DDDB88]]></referencesTableUID>
-            <connectorMidPoint><![CDATA[1074.000000]]></connectorMidPoint>
+            <connectorMidPoint><![CDATA[846.000000]]></connectorMidPoint>
             <notNull><![CDATA[1]]></notNull>
             <uid><![CDATA[2D13CB83-2D46-493A-915C-307884E341EB]]></uid>
         </SQLField>
@@ -394,7 +394,7 @@
             <y>704.00</y>
         </location>
         <size>
-            <width>199.00</width>
+            <width>192.00</width>
             <height>280.00</height>
         </size>
         <zorder>1</zorder>
@@ -550,7 +550,7 @@
             <uid><![CDATA[9E5C5A11-536B-4D4C-9D12-BDB90D10539D]]></uid>
         </SQLField>
         <SQLField>
-            <name><![CDATA[topcat]]></name>
+            <name><![CDATA[ad_type]]></name>
             <type><![CDATA[VARCHAR(20)]]></type>
             <notNull><![CDATA[1]]></notNull>
             <temporaryOriginalName><![CDATA[topcat]]></temporaryOriginalName>
@@ -600,6 +600,7 @@
             <destinationCardinality>0</destinationCardinality>
             <referencesFieldUID><![CDATA[A5562BDF-A526-43AD-BEFE-8D65C508931C]]></referencesFieldUID>
             <referencesTableUID><![CDATA[FADAE96D-4855-4B34-A81D-8273EDEDF183]]></referencesTableUID>
+            <connectorMidPoint><![CDATA[551.000000]]></connectorMidPoint>
             <notNull><![CDATA[1]]></notNull>
             <temporaryOriginalName><![CDATA[owner]]></temporaryOriginalName>
             <uid><![CDATA[435A18AD-2E3A-4429-8AA9-8E5D80F2DB6E]]></uid>
@@ -632,7 +633,7 @@
         <name><![CDATA[menu]]></name>
         <schema><![CDATA[]]></schema>
         <location>
-            <x>0.00</x>
+            <x>1088.00</x>
             <y>704.00</y>
         </location>
         <size>
@@ -675,6 +676,7 @@
             <destinationCardinality>0</destinationCardinality>
             <referencesFieldUID><![CDATA[2E2AE4AD-56FC-48A0-9332-B9E023C16725]]></referencesFieldUID>
             <referencesTableUID><![CDATA[C91982E6-95E5-4D7F-A44C-6C230818C7B9]]></referencesTableUID>
+            <connectorMidPoint><![CDATA[1379.000000]]></connectorMidPoint>
             <uid><![CDATA[FFE9FABD-3F45-46A8-96C8-43E9D6AD4237]]></uid>
         </SQLField>
         <SQLField>
@@ -790,6 +792,85 @@
         <temporaryOriginalName><![CDATA[Table6]]></temporaryOriginalName>
         <ui.treeExpanded><![CDATA[1]]></ui.treeExpanded>
         <uid><![CDATA[C9F5AC1C-C767-4DE9-9705-0E6A4E055A63]]></uid>
+    </SQLTable>
+    <SQLTable>
+        <name><![CDATA[donnerie_donnerie]]></name>
+        <schema><![CDATA[]]></schema>
+        <location>
+            <x>0.00</x>
+            <y>64.00</y>
+        </location>
+        <size>
+            <width>256.00</width>
+            <height>192.00</height>
+        </size>
+        <zorder>11</zorder>
+        <SQLField>
+            <name><![CDATA[id]]></name>
+            <type><![CDATA[INTEGER]]></type>
+            <primaryKey>1</primaryKey>
+            <autoIncrement><![CDATA[1]]></autoIncrement>
+            <temporaryOriginalName><![CDATA[id]]></temporaryOriginalName>
+            <uid><![CDATA[1289DD9B-833F-4D6B-ABB3-6264B2A22FEE]]></uid>
+        </SQLField>
+        <SQLField>
+            <name><![CDATA[donnerie_id]]></name>
+            <type><![CDATA[INTEGER]]></type>
+            <referencesField>id</referencesField>
+            <referencesTable>donnerie</referencesTable>
+            <referencesField><![CDATA[id]]></referencesField>
+            <referencesTable><![CDATA[donnerie]]></referencesTable>
+            <sourceCardinality>0</sourceCardinality>
+            <destinationCardinality>0</destinationCardinality>
+            <referencesFieldUID><![CDATA[7721BE75-D2A3-47A3-9CC3-342751D89EC7]]></referencesFieldUID>
+            <referencesTableUID><![CDATA[FEC1DD55-B08B-4F78-BBE4-00E9F3DDDB88]]></referencesTableUID>
+            <connectorMidPoint><![CDATA[285.000000]]></connectorMidPoint>
+            <notNull><![CDATA[1]]></notNull>
+            <uid><![CDATA[4E2A73AE-D86F-48B8-B3C1-05EC6B149528]]></uid>
+        </SQLField>
+        <SQLField>
+            <name><![CDATA[related_id]]></name>
+            <type><![CDATA[INTEGER]]></type>
+            <referencesField>id</referencesField>
+            <referencesTable>donnerie</referencesTable>
+            <referencesField><![CDATA[id]]></referencesField>
+            <referencesTable><![CDATA[donnerie]]></referencesTable>
+            <sourceCardinality>0</sourceCardinality>
+            <destinationCardinality>0</destinationCardinality>
+            <referencesFieldUID><![CDATA[7721BE75-D2A3-47A3-9CC3-342751D89EC7]]></referencesFieldUID>
+            <referencesTableUID><![CDATA[FEC1DD55-B08B-4F78-BBE4-00E9F3DDDB88]]></referencesTableUID>
+            <connectorMidPoint><![CDATA[373.000000]]></connectorMidPoint>
+            <notNull><![CDATA[1]]></notNull>
+            <uid><![CDATA[F1063712-CEC8-46C8-9550-47F4DF59C3CB]]></uid>
+        </SQLField>
+        <SQLField>
+            <name><![CDATA[related_type]]></name>
+            <type><![CDATA[VARCHAR(20)]]></type>
+            <notNull><![CDATA[0]]></notNull>
+            <temporaryOriginalName><![CDATA[STATUS]]></temporaryOriginalName>
+            <uid><![CDATA[8BC1EF27-DBC6-4D52-A70C-D9E3DC12FA2E]]></uid>
+        </SQLField>
+        <SQLField>
+            <name><![CDATA[status]]></name>
+            <type><![CDATA[VARCHAR(20)]]></type>
+            <notNull><![CDATA[0]]></notNull>
+            <temporaryOriginalName><![CDATA[STATUS]]></temporaryOriginalName>
+            <uid><![CDATA[C2E486DC-A9F2-4598-B745-B48AA0B1C37C]]></uid>
+        </SQLField>
+        <SQLField>
+            <name><![CDATA[created_at]]></name>
+            <type><![CDATA[DATETIME]]></type>
+            <temporaryOriginalName><![CDATA[id_1]]></temporaryOriginalName>
+            <uid><![CDATA[31C2C04D-BA22-4245-B620-2AACF2E3E0D1]]></uid>
+        </SQLField>
+        <SQLField>
+            <name><![CDATA[updated_at]]></name>
+            <type><![CDATA[DATETIME]]></type>
+            <temporaryOriginalName><![CDATA[created_0]]></temporaryOriginalName>
+            <uid><![CDATA[12267D99-6903-4C01-AD13-C5A47BE328B8]]></uid>
+        </SQLField>
+        <ui.treeExpanded><![CDATA[1]]></ui.treeExpanded>
+        <uid><![CDATA[F4BFCC7D-5B1B-416B-99E6-0E9816962690]]></uid>
     </SQLTable>
     <SQLTable>
         <name><![CDATA[user]]></name>
@@ -1122,9 +1203,9 @@ LWE0hoaG
         <snapToGrid><![CDATA[1]]></snapToGrid>
         <SourceSidebarWidth><![CDATA[276.000000]]></SourceSidebarWidth>
         <uid><![CDATA[9E773444-7C41-4E19-9803-7AEE7F26C2F3]]></uid>
-        <windowHeight><![CDATA[971.000000]]></windowHeight>
-        <windowLocationX><![CDATA[10.000000]]></windowLocationX>
-        <windowLocationY><![CDATA[56.000000]]></windowLocationY>
+        <windowHeight><![CDATA[1026.000000]]></windowHeight>
+        <windowLocationX><![CDATA[534.000000]]></windowLocationX>
+        <windowLocationY><![CDATA[214.000000]]></windowLocationY>
         <windowScrollOrigin><![CDATA[{0, 0}]]></windowScrollOrigin>
         <windowWidth><![CDATA[1670.000000]]></windowWidth>
     </SQLDocumentInfo>

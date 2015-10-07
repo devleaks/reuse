@@ -3,6 +3,7 @@ use common\models\Donnerie;
 use common\models\Category;
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -18,7 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->orderBy('name')->asArray()->all(), 'id', 'name')) ?>
 
-    <?= $form->field($model, 'topcat')->textInput(['maxlength' => 20]) ?>
+    <?= $form->field($model, 'ad_type')->textInput(['maxlength' => 20]) ?>
 
     <?= $form->field($model, 'subject')->textInput(['maxlength' => 80]) ?>
 

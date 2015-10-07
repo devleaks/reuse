@@ -1,9 +1,10 @@
 <?php
 
 use common\models\Menu;
+use common\models\User;
 use yii\helpers\Url;
 
-$role = Menu::getRole();
+$role = User::getRole();
 
 ?><aside class="main-sidebar">
 
@@ -61,6 +62,7 @@ $role = Menu::getRole();
                         'url' => '#',
                         'items' => [
                             ['label' => Yii::t('app', 'Donneries'), 'icon' => 'fa fa-hand-paper-o', 'url' => ['/admin/donnerie'],],
+                        	['label' => Yii::t('app', 'Menus'), 'icon' => 'fa fa-list', 'url' => ['/admin/menu'],],
 	                        ['label' => Yii::t('app', 'Users and Access'), 'icon' => 'fa fa-user', 'url' => ['/user/admin'],],
 	                        ['label' => Yii::t('app', 'Backup'), 'icon' => 'fa fa-download', 'url' => ['/admin/backup'],],
 
