@@ -3,11 +3,14 @@
 namespace backend\modules\admin\controllers;
 
 use Yii;
+use common\models\Category;
 use common\models\Donnerie;
 use common\models\DonnerieSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
+use yii\helpers\Html;
 
 /**
  * DonnerieController implements the CRUD actions for Donnerie model.
@@ -105,4 +108,69 @@ class DonnerieController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionCatAdd($donnerie_id)
+    {
+        $post = Yii::$app->request->post();
+        $categories = $post['categories'];
+		$donnerie = $this->findModel($donnerie_id);
+        $error = [];
+
+        foreach ($categories as $category_id) {
+			if($category = Category::findOne($category_id)) {
+               	$donnerie->add($category);
+			}
+        }
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return [$this->actionCategorySearch($donnerie_id, 'availables',  $post['search_avail']),
+                $this->actionCategorySearch($donnerie_id, 'registereds', $post['search_regs']),
+                $error];
+    }
+
+    public function actionCatDel($donnerie_id)
+    {
+        $post = Yii::$app->request->post();
+        $categories = $post['categories'];
+		$donnerie = $this->findModel($donnerie_id);
+        $error = [];
+
+        foreach ($categories as $category_id) {
+			if($category = Category::findOne($category_id)) {
+               	$donnerie->remove($category);
+			}
+        }
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return [$this->actionCategorySearch($donnerie_id, 'availables',  $post['search_avail']),
+                $this->actionCategorySearch($donnerie_id, 'registereds', $post['search_regs']),
+                $error];
+    }
+
+    public function actionCategorySearch($id, $target, $term = '')
+    {
+		$model = $this->findModel($id);
+
+		$availables = [];
+		foreach(Category::find()->all() as $category)
+			$availables[$category->id] = $category->name;
+			
+        $registereds = [];
+        foreach ($model->getActiveCategories()->each() as $category) {
+            $registereds[$category->id] = $availables[$category->id];
+            unset($availables[$category->id]);
+        }
+
+        $result = [];
+        if (!empty($term)) {
+            foreach (${$target} as $category) {
+                if (strpos($category, $term) !== false) {
+					$id = Category::findOne(['name' => $category]);
+                    $result[$id->id] = $category;
+                }
+            }
+        } else {
+            $result = ${$target};
+        }
+        return Html::renderSelectOptions('', $result);
+    }
+
 }

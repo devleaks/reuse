@@ -10,7 +10,17 @@ use frontend\widgets\Alert;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+if(isset(Yii::$app->params['BootswatchTheme'])) {
+	raoul2000\bootswatch\BootswatchAsset::$theme = Yii::$app->params['BootswatchTheme'];
+	raoul2000\bootswatch\BootswatchAsset::register($this);
+}
+
+frontend\assets\DonnerieAsset::register($this);
+//$donnerie = Yii::$app->donnerie->donnerie ? Yii::$app->donnerie->donnerie->name : '(donnerie)';
+$donnerie = '(donnerie)';
+
 AppAsset::register($this);
+
 $apphomedir = Yii::getAlias('@app');
 $languages = isset(Yii::$app->params['languages']) ? array_keys(Yii::$app->params['languages']) : [substr(Yii::$app->language, 0, 2)];
 ?>
@@ -30,7 +40,7 @@ $languages = isset(Yii::$app->params['languages']) ? array_keys(Yii::$app->param
         <?php
 			$name = Yii::$app->name . (YII_ENV_DEV ? ' –DEV='.`cd $apphomedir ; git describe --tags` : '') . (YII_DEBUG ? '–DEBUG' : '') ;
             NavBar::begin([
-                'brandLabel' => $name,
+                'brandLabel' => $name.' - '.$donnerie,
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',

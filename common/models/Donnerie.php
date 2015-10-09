@@ -30,4 +30,37 @@ class Donnerie extends _Donnerie
         ];
     }
 
+	public function getCategories() {
+        return $this->hasMany(Category::className(), ['id' => 'category_id'])->viaTable(DonnerieCategory::tableName(), ['donnerie_id' => 'id']);
+	}
+	
+	public function getActiveCategories() {
+        return Category::find()->andWhere([
+			'id' => DonnerieCategory::find()->select(DonnerieCategory::tableName().'.category_id')
+											->andWhere([DonnerieCategory::tableName().'.status' => Category::STATUS_ACTIVE])
+		]);
+	}
+
+	public function add($category) {
+		if(! $oldcat = DonnerieCategory::findOne(['donnerie_id' => $this->id, 'category_id' => $category->id])) {
+			$newcat = new DonnerieCategory([
+				'donnerie_id' => $this->id,
+				'category_id' => $category->id,
+				'status' => Category::STATUS_ACTIVE,
+			]);
+			return $newcat->save();
+		} else {
+			$oldcat->status = Category::STATUS_ACTIVE;
+			return $oldcat->save();
+		}
+		return false;
+	}
+
+	public function remove($category) {
+		if($oldcat = DonnerieCategory::findOne(['donnerie_id' => $this->id, 'category_id' => $category->id])) {
+			$oldcat->status = Category::STATUS_RETIRED;
+			return $oldcat->save();
+		}
+		return false;
+	}
 }

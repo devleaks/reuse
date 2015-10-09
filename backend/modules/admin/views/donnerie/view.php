@@ -44,4 +44,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+	<?=	$this->render('_categories', [
+		'model' => $model,
+	])?>
+
 </div>

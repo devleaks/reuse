@@ -30,7 +30,7 @@ class User extends _User
     }
 
 	/**
-	 * Returns "league" role of user, from roles attributiion. Default is golfer. Null if not loggued in.
+	 * Returns role of user. Default is visitor. Null if not loggued in.
 	 */
     static public function getRole() {
 		if(!Yii::$app->user->isGuest) {

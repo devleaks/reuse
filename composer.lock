@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "22293eb4d53cd4c728078cb39bc8437d",
-    "content-hash": "c3584f1e953b96a584a6cf51164a8704",
+    "hash": "e4b1d5030e4acd17d8e78667e17f88f8",
+    "content-hash": "ae1683e4e7adac3ad114979314b7b3cb",
     "packages": [
         {
             "name": "2amigos/yii2-gallery-widget",
@@ -690,16 +690,16 @@
         },
         {
             "name": "dmstr/yii2-adminlte-asset",
-            "version": "2.2.2",
+            "version": "2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-adminlte-asset.git",
-                "reference": "3c2ab3bf1ac1699d84b3f588fa02b297725cddda"
+                "reference": "45cffbfe90d79f3c405b4cc98f7f318ae372bb10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/3c2ab3bf1ac1699d84b3f588fa02b297725cddda",
-                "reference": "3c2ab3bf1ac1699d84b3f588fa02b297725cddda",
+                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/45cffbfe90d79f3c405b4cc98f7f318ae372bb10",
+                "reference": "45cffbfe90d79f3c405b4cc98f7f318ae372bb10",
                 "shasum": ""
             },
             "require": {
@@ -740,7 +740,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2015-10-05 08:03:34"
+            "time": "2015-10-07 21:31:26"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -2671,6 +2671,54 @@
             "time": "2015-09-23 19:25:06"
         },
         {
+            "name": "raoul2000/yii2-bootswatch-asset",
+            "version": "1.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/raoul2000/yii2-bootswatch-asset.git",
+                "reference": "81cf84e58803a33cf9730441e9f4e456b61f0ba2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/raoul2000/yii2-bootswatch-asset/zipball/81cf84e58803a33cf9730441e9f4e456b61f0ba2",
+                "reference": "81cf84e58803a33cf9730441e9f4e456b61f0ba2",
+                "shasum": ""
+            },
+            "require": {
+                "thomaspark/bootswatch": "3.3.5+2",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "raoul2000\\bootswatch\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Raoul",
+                    "email": "raoul.boulard@gmail.com"
+                }
+            ],
+            "description": "Use Bootswatch theme in your Yii application with minimum effort",
+            "keywords": [
+                "assets",
+                "bootstrap",
+                "bootswatch",
+                "css",
+                "extension",
+                "skin",
+                "stlye",
+                "theme",
+                "yii2"
+            ],
+            "time": "2015-07-13 19:23:01"
+        },
+        {
             "name": "rmrevin/yii2-fontawesome",
             "version": "2.12.0",
             "source": {
@@ -2774,6 +2822,64 @@
                 "mailer"
             ],
             "time": "2015-06-06 14:19:39"
+        },
+        {
+            "name": "thomaspark/bootswatch",
+            "version": "v3.3.5+4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thomaspark/bootswatch.git",
+                "reference": "ceb6bc5d80af9c7905b54ac4146339e6b1c68490"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thomaspark/bootswatch/zipball/ceb6bc5d80af9c7905b54ac4146339e6b1c68490",
+                "reference": "ceb6bc5d80af9c7905b54ac4146339e6b1c68490",
+                "shasum": ""
+            },
+            "suggest": {
+                "robloach/component-installer": "Allows installation of Components via Composer"
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "name": "bootswatch",
+                    "files": [
+                        "README.md",
+                        "LICENSE",
+                        "amelia/*",
+                        "cerulean/*",
+                        "cosmo/*",
+                        "cyborg/*",
+                        "darkly/*",
+                        "flatly/*",
+                        "fonts/*",
+                        "journal/*",
+                        "lumen/*",
+                        "paper/*",
+                        "readable/*",
+                        "sandstone/*",
+                        "simplex/*",
+                        "slate/*",
+                        "spacelab/*",
+                        "superhero/*",
+                        "united/*",
+                        "yeti/*"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "thomaspark",
+                    "email": "thomas@bootswatch.com"
+                }
+            ],
+            "description": "Themes for Bootstrap",
+            "time": "2015-09-24 02:47:41"
         },
         {
             "name": "vova07/yii2-imperavi-widget",
