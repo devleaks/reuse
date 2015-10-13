@@ -1,16 +1,23 @@
 <?php
+use common\models\Menu;
+
+use frontend\themes\flat\FlatAsset;
+use frontend\widgets\Alert;
+
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use common\models\Menu;
-use frontend\assets\AppAsset;
-use frontend\widgets\Alert;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-AppAsset::register($this);
+if(isset(Yii::$app->params['BootswatchTheme'])) {
+	raoul2000\bootswatch\BootswatchAsset::$theme = Yii::$app->params['BootswatchTheme'];
+	raoul2000\bootswatch\BootswatchAsset::register($this);
+}
+
+FlatAsset::register($this);
 
 $apphomedir = Yii::getAlias('@app');
 $languages = isset(Yii::$app->params['languages']) ? array_keys(Yii::$app->params['languages']) : [substr(Yii::$app->language, 0, 2)];
@@ -74,7 +81,7 @@ $languages = isset(Yii::$app->params['languages']) ? array_keys(Yii::$app->param
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
-		<?= Yii::$app->donnerie->donnerie ? $content : $this->render('donneries') ?>
+		<?= $content ?>
         </div>
     </div>
 

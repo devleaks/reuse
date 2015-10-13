@@ -16,43 +16,39 @@ use yii\base\Theme;
 class Donnerie extends Component
 {
 	/** Default values */
-	const DAYS_BEFORE = 28;	
+	const DEFAULT_EXCLUSIVITY = 28;	// days
+	const DEFAULT_THEME_LOCATION = '@frontend/themes';
 
 	public $id;
 	public $donnerie;
-	public $expiration_delay;
+	public $exclusivity = self::DEFAULT_EXCLUSIVITY;
 
 	public function init() {
 		parent::init();
 		$this->donnerie = DonnerieModel::findOne(['key' => $_SERVER['SERVER_NAME']]);
-		$this->expiration_delay = self::DAYS_BEFORE;
+	}
+	
+	public function getId() {
+		return $this->donnerie ? $this->donnerie->id : null;
 	}
 	
 	public function getName() {
 		return $this->donnerie ? $this->donnerie->name : Yii::t('app', 'une donnerie');
 	}
 	
-	public function getTheme() {
+	public function getTheme($location = self::DEFAULT_THEME_LOCATION) {
 		if($this->donnerie) {
 			if($this->donnerie->theme) {
+				$basePath = $location.'/'.$this->donnerie->theme;
 				return new Theme([
-					'basePath' => '@frontend/views/themes/'.$this->donnerie->theme,
+					'basePath' => $basePath,
 	                'baseUrl' => '@web',
 	                'pathMap' => [
-	                    '@frontend/views' => '@frontend/views/themes/'.$this->donnerie->theme.'/views',
+	                    '@frontend/views' => $basePath.'/views',
+                    	'@frontend/widgets/views' => $basePath.'/widgets/views',
 	                ],
 				]);
 			}				
 		}
-	}
-	
-	public function getAsset() {
-		return null;
-	}
-
-	public function register($view) {
-		// fetchs donnerie specific asset and registers it.
-		if($asset = $this->getAsset())
-			$asset->register($view);
 	}
 }

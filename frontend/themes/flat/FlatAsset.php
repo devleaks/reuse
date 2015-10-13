@@ -4,12 +4,12 @@
  * @author Programmer Thailand <contact@programmerthailand.com>
  * http://shapebootstrap.net/item/flat-theme-free-responsive-multipurpose-site-template/
  */
-namespace frontend\assets;
+namespace frontend\themes\flat;
 
 use yii\web\AssetBundle;
 
 class FlatAsset extends AssetBundle {
-    public $sourcePath='@frontend/views/themes/flat/assets';
+    public $sourcePath='@frontend/themes/flat/assets';
     public $baseUrl = '@web';
     
     public $css=[

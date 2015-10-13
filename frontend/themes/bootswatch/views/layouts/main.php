@@ -1,26 +1,22 @@
 <?php
+use common\models\Menu;
+
+use frontend\themes\bootswatch\BootswatchAsset;
+use frontend\widgets\Alert;
+
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use common\models\Menu;
-use frontend\assets\DonnerieAsset;
-use frontend\assets\FlatAsset;
-use frontend\widgets\Alert;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
 if(isset(Yii::$app->params['BootswatchTheme'])) {
-	raoul2000\bootswatch\BootswatchAsset::$theme = Yii::$app->params['BootswatchTheme'];
-	raoul2000\bootswatch\BootswatchAsset::register($this);
+	BootswatchAsset::$theme = Yii::$app->params['BootswatchTheme'];
 }
 
-// DonnerieAsset::register($this);
-
-$donnerie = Yii::$app->donnerie ? (Yii::$app->donnerie->donnerie ? Yii::$app->donnerie->donnerie->name : '(donnerie)') : '(?)';
-
-FlatAsset::register($this);
+BootswatchAsset::register($this);
 
 $apphomedir = Yii::getAlias('@app');
 $languages = isset(Yii::$app->params['languages']) ? array_keys(Yii::$app->params['languages']) : [substr(Yii::$app->language, 0, 2)];
@@ -41,7 +37,7 @@ $languages = isset(Yii::$app->params['languages']) ? array_keys(Yii::$app->param
         <?php
 			$name = Yii::$app->name . (YII_ENV_DEV ? ' –DEV='.`cd $apphomedir ; git describe --tags` : '') . (YII_DEBUG ? '–DEBUG' : '') ;
             NavBar::begin([
-                'brandLabel' => $name.' - '.$donnerie,
+                'brandLabel' => $name.' - '.Yii::$app->donnerie->name,
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
