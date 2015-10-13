@@ -32,7 +32,7 @@ class AdFrontpageSearch extends Ad
 		if(file_exists($stoplist_file)) {
 			$stoplist = require($stoplist_file);
 		}
-		Yii::trace($stoplist_file.', c='.count($stoplist), 'Ad::cleanQuery');
+		//Yii::trace($stoplist_file.', c='.count($stoplist), 'Ad::cleanQuery');
 		foreach ($stoplist as $word) {
 		  $pattern = "/(^|\\s|!|,|\\.|;|:|\\-|_|\\?)" . preg_quote($word) . "($|\\s|!|,|\\.|;|:|\\-|_|\\?)/i";
 		  $text = preg_replace($pattern, '', $text);
@@ -65,6 +65,11 @@ class AdFrontpageSearch extends Ad
         }
 
 		$qstr = $this->cleanQuery($this->search);
+        if ($qstr == '') {
+            // uncomment the following line if you do not want to any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
 
         $query->andFilterWhere([
             'id' => $this->id,

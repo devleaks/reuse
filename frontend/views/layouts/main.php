@@ -15,10 +15,8 @@ if(isset(Yii::$app->params['BootswatchTheme'])) {
 	raoul2000\bootswatch\BootswatchAsset::register($this);
 }
 
-frontend\assets\DonnerieAsset::register($this);
-//$donnerie = Yii::$app->donnerie->donnerie ? Yii::$app->donnerie->donnerie->name : '(donnerie)';
-$donnerie = '(donnerie)';
-
+// Yii::$app->donnerie->register($this);
+// Yii::$app->donnerie->getAsset();
 AppAsset::register($this);
 
 $apphomedir = Yii::getAlias('@app');
@@ -40,7 +38,7 @@ $languages = isset(Yii::$app->params['languages']) ? array_keys(Yii::$app->param
         <?php
 			$name = Yii::$app->name . (YII_ENV_DEV ? ' –DEV='.`cd $apphomedir ; git describe --tags` : '') . (YII_DEBUG ? '–DEBUG' : '') ;
             NavBar::begin([
-                'brandLabel' => $name.' - '.$donnerie,
+                'brandLabel' => $name.' - '.Yii::$app->donnerie->name,
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -83,7 +81,7 @@ $languages = isset(Yii::$app->params['languages']) ? array_keys(Yii::$app->param
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
-        <?= $content ?>
+		<?= Yii::$app->donnerie->donnerie ? $content : $this->render('donneries') ?>
         </div>
     </div>
 

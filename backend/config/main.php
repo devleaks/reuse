@@ -14,6 +14,7 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => [
 		'log',
+		'donnerie'
 	],
     'modules' => [],
     'components' => [

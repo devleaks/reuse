@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+if( $theme = (Yii::$app->donnerie ? Yii::$app->donnerie->getTheme() : null) )
+	$this->theme = $theme;
+
 /* @var $this yii\web\View */
 $this->title = Yii::$app->name;
 ?>

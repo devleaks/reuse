@@ -71,7 +71,7 @@
             <type><![CDATA[DATETIME]]></type>
             <uid><![CDATA[F5C27922-80C7-4599-931C-44EDB4D4DF5F]]></uid>
         </SQLField>
-        <labelWindowIndex><![CDATA[5]]></labelWindowIndex>
+        <labelWindowIndex><![CDATA[4]]></labelWindowIndex>
         <ui.treeExpanded><![CDATA[1]]></ui.treeExpanded>
         <uid><![CDATA[118DCAB5-84F3-4FF8-8C66-99D33E836A6B]]></uid>
     </SQLTable>
@@ -128,7 +128,7 @@
             <temporaryOriginalName><![CDATA[created_0]]></temporaryOriginalName>
             <uid><![CDATA[784F28D0-123A-4799-BBCB-5BE91542E5A3]]></uid>
         </SQLField>
-        <labelWindowIndex><![CDATA[11]]></labelWindowIndex>
+        <labelWindowIndex><![CDATA[10]]></labelWindowIndex>
         <temporaryOriginalName><![CDATA[THINGS_1]]></temporaryOriginalName>
         <ui.treeExpanded><![CDATA[1]]></ui.treeExpanded>
         <uid><![CDATA[367B5CF4-E65F-4930-A535-450586004DA4]]></uid>
@@ -196,7 +196,7 @@
             <temporaryOriginalName><![CDATA[limit_0]]></temporaryOriginalName>
             <uid><![CDATA[97404D2A-76B1-4AB6-AF7E-3BCCF7B9A85E]]></uid>
         </SQLField>
-        <labelWindowIndex><![CDATA[8]]></labelWindowIndex>
+        <labelWindowIndex><![CDATA[7]]></labelWindowIndex>
         <temporaryOriginalName><![CDATA[history]]></temporaryOriginalName>
         <ui.treeExpanded><![CDATA[1]]></ui.treeExpanded>
         <uid><![CDATA[8CCB895A-C211-4F3E-8129-AF7FCA7F5DEE]]></uid>
@@ -269,7 +269,7 @@
             <temporaryOriginalName><![CDATA[created_0]]></temporaryOriginalName>
             <uid><![CDATA[4E3E10C9-ABC2-477A-BC70-AA16E03496D2]]></uid>
         </SQLField>
-        <labelWindowIndex><![CDATA[4]]></labelWindowIndex>
+        <labelWindowIndex><![CDATA[3]]></labelWindowIndex>
         <ui.treeExpanded><![CDATA[1]]></ui.treeExpanded>
         <uid><![CDATA[A64AE744-D363-488B-B59A-4DBD0A5A0FFB]]></uid>
     </SQLTable>
@@ -381,7 +381,7 @@
             <temporaryOriginalName><![CDATA[created_0]]></temporaryOriginalName>
             <uid><![CDATA[4B0C7668-868B-42D5-94F9-37EBBDD3A8E8]]></uid>
         </SQLField>
-        <labelWindowIndex><![CDATA[10]]></labelWindowIndex>
+        <labelWindowIndex><![CDATA[9]]></labelWindowIndex>
         <temporaryOriginalName><![CDATA[THINGS_1]]></temporaryOriginalName>
         <ui.treeExpanded><![CDATA[1]]></ui.treeExpanded>
         <uid><![CDATA[AE55513E-3F68-46ED-B661-00C512A31C35]]></uid>
@@ -511,7 +511,7 @@
             <temporaryOriginalName><![CDATA[created_0]]></temporaryOriginalName>
             <uid><![CDATA[EFDD4F38-F965-47A6-B20B-6664C6B47093]]></uid>
         </SQLField>
-        <labelWindowIndex><![CDATA[9]]></labelWindowIndex>
+        <labelWindowIndex><![CDATA[8]]></labelWindowIndex>
         <temporaryOriginalName><![CDATA[THINGS]]></temporaryOriginalName>
         <ui.treeExpanded><![CDATA[1]]></ui.treeExpanded>
         <uid><![CDATA[BE4EFF58-C0AD-4539-AD35-216D7ED806D1]]></uid>
@@ -594,7 +594,7 @@
             <notNull><![CDATA[0]]></notNull>
             <uid><![CDATA[B359EC65-5A19-49ED-91E3-D4489C2B0554]]></uid>
         </SQLField>
-        <labelWindowIndex><![CDATA[3]]></labelWindowIndex>
+        <labelWindowIndex><![CDATA[2]]></labelWindowIndex>
         <ui.treeExpanded><![CDATA[1]]></ui.treeExpanded>
         <uid><![CDATA[C91982E6-95E5-4D7F-A44C-6C230818C7B9]]></uid>
     </SQLTable>
@@ -606,8 +606,8 @@
             <y>320.00</y>
         </location>
         <size>
-            <width>192.00</width>
-            <height>192.00</height>
+            <width>205.00</width>
+            <height>160.00</height>
         </size>
         <zorder>3</zorder>
         <SQLField>
@@ -675,7 +675,7 @@
             <temporaryOriginalName><![CDATA[created_0]]></temporaryOriginalName>
             <uid><![CDATA[9C9006E5-7413-4F03-8E03-5540EC73BD98]]></uid>
         </SQLField>
-        <labelWindowIndex><![CDATA[7]]></labelWindowIndex>
+        <labelWindowIndex><![CDATA[6]]></labelWindowIndex>
         <temporaryOriginalName><![CDATA[Table6]]></temporaryOriginalName>
         <ui.treeExpanded><![CDATA[1]]></ui.treeExpanded>
         <uid><![CDATA[C9F5AC1C-C767-4DE9-9705-0E6A4E055A63]]></uid>
@@ -875,7 +875,7 @@
             <notNull><![CDATA[1]]></notNull>
             <uid><![CDATA[32C2FD58-C33B-43AC-8F13-05234923523A]]></uid>
         </SQLField>
-        <labelWindowIndex><![CDATA[6]]></labelWindowIndex>
+        <labelWindowIndex><![CDATA[5]]></labelWindowIndex>
         <ui.treeExpanded><![CDATA[1]]></ui.treeExpanded>
         <uid><![CDATA[FADAE96D-4855-4B34-A81D-8273EDEDF183]]></uid>
     </SQLTable>
@@ -903,10 +903,17 @@
         <SQLField>
             <name><![CDATA[name]]></name>
             <type><![CDATA[VARCHAR(40)]]></type>
+            <notNull><![CDATA[1]]></notNull>
             <uid><![CDATA[B2184DB7-254C-49D0-8DA6-37626EB1A59D]]></uid>
         </SQLField>
         <SQLField>
-            <name><![CDATA[layout]]></name>
+            <name><![CDATA[key]]></name>
+            <type><![CDATA[VARCHAR(80)]]></type>
+            <notNull><![CDATA[1]]></notNull>
+            <uid><![CDATA[578C826D-CC2F-4661-8598-52ECC4F66264]]></uid>
+        </SQLField>
+        <SQLField>
+            <name><![CDATA[theme]]></name>
             <type><![CDATA[VARCHAR(40)]]></type>
             <uid><![CDATA[8B89B7A8-E366-4670-9B1C-3C74F37D5FDA]]></uid>
         </SQLField>
@@ -1091,10 +1098,10 @@ LWE0hoaG
         <snapToGrid><![CDATA[1]]></snapToGrid>
         <SourceSidebarWidth><![CDATA[276.000000]]></SourceSidebarWidth>
         <uid><![CDATA[9E773444-7C41-4E19-9803-7AEE7F26C2F3]]></uid>
-        <windowHeight><![CDATA[1081.000000]]></windowHeight>
-        <windowLocationX><![CDATA[534.000000]]></windowLocationX>
-        <windowLocationY><![CDATA[159.000000]]></windowLocationY>
-        <windowScrollOrigin><![CDATA[{3, 48}]]></windowScrollOrigin>
+        <windowHeight><![CDATA[971.000000]]></windowHeight>
+        <windowLocationX><![CDATA[10.000000]]></windowLocationX>
+        <windowLocationY><![CDATA[56.000000]]></windowLocationY>
+        <windowScrollOrigin><![CDATA[{0, 0}]]></windowScrollOrigin>
         <windowWidth><![CDATA[1670.000000]]></windowWidth>
     </SQLDocumentInfo>
     <AllowsIndexRenamingOnInsert><![CDATA[1]]></AllowsIndexRenamingOnInsert>
