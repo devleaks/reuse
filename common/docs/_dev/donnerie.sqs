@@ -520,8 +520,8 @@
         <name><![CDATA[menu]]></name>
         <schema><![CDATA[]]></schema>
         <location>
-            <x>1088.00</x>
-            <y>704.00</y>
+            <x>896.00</x>
+            <y>576.00</y>
         </location>
         <size>
             <width>256.00</width>
@@ -563,7 +563,7 @@
             <destinationCardinality>0</destinationCardinality>
             <referencesFieldUID><![CDATA[2E2AE4AD-56FC-48A0-9332-B9E023C16725]]></referencesFieldUID>
             <referencesTableUID><![CDATA[C91982E6-95E5-4D7F-A44C-6C230818C7B9]]></referencesTableUID>
-            <connectorMidPoint><![CDATA[1379.000000]]></connectorMidPoint>
+            <connectorMidPoint><![CDATA[1172.000000]]></connectorMidPoint>
             <uid><![CDATA[FFE9FABD-3F45-46A8-96C8-43E9D6AD4237]]></uid>
         </SQLField>
         <SQLField>
@@ -1101,7 +1101,7 @@ LWE0hoaG
         <windowHeight><![CDATA[971.000000]]></windowHeight>
         <windowLocationX><![CDATA[10.000000]]></windowLocationX>
         <windowLocationY><![CDATA[56.000000]]></windowLocationY>
-        <windowScrollOrigin><![CDATA[{0, 0}]]></windowScrollOrigin>
+        <windowScrollOrigin><![CDATA[{0, 1}]]></windowScrollOrigin>
         <windowWidth><![CDATA[1670.000000]]></windowWidth>
     </SQLDocumentInfo>
     <AllowsIndexRenamingOnInsert><![CDATA[1]]></AllowsIndexRenamingOnInsert>
